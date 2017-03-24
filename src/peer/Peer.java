@@ -24,8 +24,28 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String backup() throws RemoteException {
-        return "backup"+idPeer;
+        return "backup: "+idPeer;
 
+    }
+
+    @Override
+    public String restore() throws RemoteException {
+        return "restore: "+idPeer;
+    }
+
+    @Override
+    public String delete() throws RemoteException {
+        return "delete: "+idPeer;
+    }
+
+    @Override
+    public String reclaim() throws RemoteException {
+        return "reclaim: "+idPeer;
+    }
+
+    @Override
+    public String state() throws RemoteException {
+        return "state: "+idPeer;
     }
 
     public MC getControlChannel() {
