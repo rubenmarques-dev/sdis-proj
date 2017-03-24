@@ -27,7 +27,8 @@ public class MCThread extends Thread{
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                peer.getControlChannel().getMc_socket().receive(packet);
-                System.out.println();
+                String received = new String(packet.getData(), 0, packet.getLength());
+                System.out.println("Message: " + received);
             } catch (IOException e) {
                 e.printStackTrace();
             }
