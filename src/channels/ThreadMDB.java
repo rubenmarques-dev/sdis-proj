@@ -2,33 +2,31 @@ package channels;
 
 import peer.Peer;
 
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.net.DatagramPacket;
 
 /**
- * Created by ei10117 on 16/03/2017.
+ * Created by ei10117 on 24/03/2017.
  */
-public class ControlThread extends Thread{
+public class ThreadMDB extends Thread{
     private Peer peer;
 
 
-    public ControlThread(Peer peer) {
+    public ThreadMDB(Peer peer) {
         this.peer = peer;
     }
 
     @Override
     public void run() {
-        System.out.println("controlThread");
+        System.out.println("deleteThread");
         while (true) {
 
 
             try {
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
-                peer.getControlChannel().getMc_socket().receive(packet);
-                String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Message: " + received);
+                peer.getBackupChannel().getMc_socket().receive(packet);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

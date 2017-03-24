@@ -1,10 +1,6 @@
-import channels.MC;
-import messages.StoredMsg;
 import rmi.RemoteInterface;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 

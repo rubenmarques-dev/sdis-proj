@@ -1,9 +1,9 @@
 package peer;
 
-import channels.ControlThread;
-import channels.DeleteThread;
-import channels.MC;
-import channels.RestoreThread;
+import channels.ThreadMC;
+import channels.ThreadMDB;
+import channels.MulticastChannel;
+import channels.ThreadMDR;
 import rmi.RemoteInterface;
 
 import java.io.IOException;
@@ -17,19 +17,19 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Peer implements RemoteInterface{
 
-    private MC controlChannel;
-    private MC backupChannel;
-    private MC restoreChannel;
-    private ControlThread controlThread;
-    private DeleteThread deleteThread;
-    private RestoreThread restoreThread;
+    private MulticastChannel controlChannel;
+    private MulticastChannel backupChannel;
+    private MulticastChannel restoreChannel;
+    private ThreadMC controlThread;
+    private ThreadMDB deleteThread;
+    private ThreadMDR restoreThread;
     private int idPeer;
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
-        this.controlThread = new ControlThread(this);
-        this.restoreThread = new RestoreThread(this);
-        this.deleteThread = new DeleteThread(this);
+        this.controlThread = new ThreadMC(this);
+        this.restoreThread = new ThreadMDR(this);
+        this.deleteThread = new ThreadMDB(this);
     }
 
     @Override
@@ -59,20 +59,20 @@ public class Peer implements RemoteInterface{
     }
 
     //get-set controlChannel
-    public MC getControlChannel() {
+    public MulticastChannel getControlChannel() {
         return controlChannel;
     }
-    public void setControlChannel(MC controlChannel) {
+    public void setControlChannel(MulticastChannel controlChannel) {
         this.controlChannel = controlChannel;
     }
 
     //get-set backupChannel
-    public MC getBackupChannel() {return backupChannel;}
-    public void setBackupChannel(MC backupChannel) {this.backupChannel = backupChannel;}
+    public MulticastChannel getBackupChannel() {return backupChannel;}
+    public void setBackupChannel(MulticastChannel backupChannel) {this.backupChannel = backupChannel;}
 
     //get-set crestoreChannel
-    public MC getRestoreChannel() {return restoreChannel;}
-    public void setRestoreChannel(MC restoreChannel) {this.restoreChannel = restoreChannel;}
+    public MulticastChannel getRestoreChannel() {return restoreChannel;}
+    public void setRestoreChannel(MulticastChannel restoreChannel) {this.restoreChannel = restoreChannel;}
 
     //get-set idPeer
     public int getIdPeer() {return idPeer;}
@@ -109,15 +109,15 @@ public class Peer implements RemoteInterface{
 
             //creating control channel
             control = args[3].split(":");
-            MC controlChannel = new MC(control[0],Integer.parseInt(control[1]));
+            MulticastChannel controlChannel = new MulticastChannel(control[0],Integer.parseInt(control[1]));
 
             //creating backup channel
             backup = args[4].split(":");
-            MC backupChannel = new MC(backup[0],Integer.parseInt(backup[1]));
+            MulticastChannel backupChannel = new MulticastChannel(backup[0],Integer.parseInt(backup[1]));
 
             //creating restore channel
             restore = args[5].split(":");
-            MC restoreChannel = new MC(restore[0],Integer.parseInt(restore[1]));
+            MulticastChannel restoreChannel = new MulticastChannel(restore[0],Integer.parseInt(restore[1]));
 
 
             peer.setControlChannel(controlChannel);
@@ -128,23 +128,17 @@ public class Peer implements RemoteInterface{
         }
 
 
-
-
-
-
-
         try {
             RemoteInterface remoteInterface = (RemoteInterface ) UnicastRemoteObject.exportObject(peer, 0);
             // Bind the remote object's stub in the registry
             Registry registry = LocateRegistry.createRegistry(idPeer);
             //Registry registry = LocateRegistry.getRegistry(peerId); //deprecated
             registry.rebind(remote, remoteInterface);
-            System.out.println("Peer ready");
+            System.out.println("Peer remotely ready");
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
         }
-
 
 
     }

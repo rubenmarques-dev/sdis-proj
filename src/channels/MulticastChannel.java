@@ -6,13 +6,13 @@ import java.net.*;
 /**
  * Created by ei10117 on 16/03/2017.
  */
-public class MC extends Thread{
+public class MulticastChannel extends Thread{
     protected MulticastSocket mc_socket;
     protected InetAddress mc_addr;
     protected int mc_port;
     protected int MAX_SIZE= 65536;
 
-    public MC(String addr, int port/*, String type*/) {
+    public MulticastChannel(String addr, int port/*, String type*/) {
 
 
         try {
