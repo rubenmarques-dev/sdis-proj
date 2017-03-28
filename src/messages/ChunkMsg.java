@@ -3,7 +3,7 @@ package messages;
 /**
  * Created by zabrn on 19/03/2016.
  */
-public class ChunkMsg extends GetChunkMsg {
+public class ChunkMsg extends GetChunk {
 
     protected byte[] body;
 

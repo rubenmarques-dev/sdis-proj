@@ -51,11 +51,11 @@ public class MulticastChannel extends Thread{
         return mc_socket;
     }
 
-    public int getMc_port(){
+    public int getPort(){
         return mc_port;
     }
 
-    public InetAddress getMc_addr(){
+    public InetAddress getAdress(){
         return mc_addr;
     }
 

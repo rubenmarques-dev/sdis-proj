@@ -18,12 +18,30 @@ public class ControlHandler extends Thread{
     @Override
     public void run() {
 
-        String fields[] = ParserHeader.parse(packet.getData().toString());
+        String received = new String(packet.getData(), 0, packet.getLength());
+        System.out.println("received(ch): " + received);
+        String fields[] = ParserHeader.parse(received);
         String type = fields[0];
 
         if(type.equals("STORED"))
         {
-            System.out.println("stored received");
+            System.out.println("type.equals(STORED)");
+        }
+        else if(type.equals("GETCHUNK"))
+        {
+            System.out.println("type.equals(GETCHUNK)");
+        }
+        else if(type.equals("DELETE"))
+        {
+            System.out.println("type.equals(DELETE)");
+        }
+        else if(type.equals("REMOVED"))
+        {
+            System.out.println("type.equals(REMOVED)");
+        }
+        else
+        {
+            System.out.println("controlHandler .type-> " + type);
         }
 
     }

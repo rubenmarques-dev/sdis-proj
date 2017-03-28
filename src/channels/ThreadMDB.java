@@ -19,7 +19,7 @@ public class ThreadMDB extends Thread{
 
     @Override
     public void run() {
-        System.out.println("backupThread");
+        System.out.println("Backup Thread");
         while (true) {
 
 
@@ -29,6 +29,7 @@ public class ThreadMDB extends Thread{
                 peer.getBackupChannel().getMc_socket().receive(packet);
                 if(packet.getData() != null)
                 {
+                    System.out.println("-Chamada BackupHanler()");
                     (new BackupHandler(packet)).run();
                 }
                 else

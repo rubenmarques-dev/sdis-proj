@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SDIS-project.iml" filepath="$PROJECT_DIR$/SDIS-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdis.iml" filepath="$PROJECT_DIR$/sdis.iml" />
     </modules>
   </component>
 </project>

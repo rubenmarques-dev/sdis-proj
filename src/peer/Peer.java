@@ -4,7 +4,10 @@ import channels.ThreadMC;
 import channels.ThreadMDB;
 import channels.MulticastChannel;
 import channels.ThreadMDR;
-import messages.PutChunkMsg;
+import messages.Delete;
+import messages.GetChunk;
+import messages.PutChunk;
+import messages.Removed;
 import rmi.RemoteInterface;
 
 import java.io.IOException;
@@ -36,9 +39,9 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String backup() throws RemoteException {
-        PutChunkMsg msg = new PutChunkMsg("1.0",idPeer,"teste.txt", 13,"ola".getBytes(),2);
-        System.out.println(msg);
-        DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.getBytes().length,backupChannel.getMc_socket().getInetAddress(),backupChannel.getMc_socket().getPort());
+        PutChunk msg = new PutChunk("1.0",idPeer,"teste.txt", 13,"ola".getBytes(),2);
+
+       DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,backupChannel.getAdress(),backupChannel.getPort());
         try {
             backupChannel.getMc_socket().send(packet);
         } catch (IOException e) {
@@ -49,16 +52,40 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String restore() throws RemoteException {
-        return "restore: "+idPeer;
+        GetChunk msg = new GetChunk("1.0",idPeer,"teste.txt", 13);
+
+        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
+        try {
+            controlChannel.getMc_socket().send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 
     @Override
     public String delete() throws RemoteException {
-        return "delete: "+idPeer;
+        Delete msg = new Delete("1.0",idPeer,"teste.txt");
+
+        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
+        try {
+            controlChannel.getMc_socket().send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 
     @Override
     public String reclaim() throws RemoteException {
+        Removed msg = new Removed("1.0",idPeer,"teste.txt", 13);
+
+        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
+        try {
+            controlChannel.getMc_socket().send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "reclaim: "+idPeer;
     }
 
@@ -111,7 +138,7 @@ public class Peer implements RemoteInterface{
             version = args[0];
             idPeer = Integer.parseInt(args[1]);
             remote = args[2];
-            System.out.println("version: " + version + "\nid: "+ idPeer + "\nremote: " + remote);
+            //System.out.println("version: " + version + "\nid: "+ idPeer + "\nremote: " + remote);
 
             //creating peer
             peer = new Peer(idPeer);
@@ -122,6 +149,7 @@ public class Peer implements RemoteInterface{
 
             //creating backup channel
             backup = args[4].split(":");
+            System.out.println(backup[0]);
             MulticastChannel backupChannel = new MulticastChannel(backup[0],Integer.parseInt(backup[1]));
 
             //creating restore channel

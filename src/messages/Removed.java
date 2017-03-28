@@ -1,14 +1,13 @@
 package messages;
 
 /**
- * Created by zabrn on 19/03/2016.
+ * Created by ei10117 on 28/03/2017.
  */
-public class StoredMsg extends GetChunkMsg {
+public class Removed extends GetChunk {
 
-
-    public StoredMsg(String version, int senderID, String fileId, int chunkNo) {
+    public Removed(String version, int senderID, String fileId, int chunkNo) {
         super(version, senderID, fileId, chunkNo);
-        this.type = "STORED";
+        this.type = "REMOVED";
     }
 
     @Override

@@ -1,5 +1,7 @@
 package channels;
 
+import handlers.BackupHandler;
+import handlers.RestoreHandler;
 import peer.Peer;
 
 import java.io.IOException;
@@ -18,23 +20,27 @@ public class ThreadMDR extends Thread{
 
     @Override
     public void run() {
-        System.out.println("restore Thread");
+        // System.out.println("restore Thread");
         while (true) {
-
 
             try {
                 byte[] buffer = new byte[256];
-                DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
-                peer.getRestoreChannel().getMc_socket().receive(packet);
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+                peer.getBackupChannel().getMc_socket().receive(packet);
+                if (packet.getData() != null) {
+                    System.out.println("-Chamada BackupHanler()");
+                    (new RestoreHandler(packet)).run();
+                } else {
+                    System.out.println("MENSAGEM MAL RECEBIDA");
+                    System.out.println("MENSAGEM: " + packet.getData().toString());
+                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-
-
         }
-
     }
 
 }

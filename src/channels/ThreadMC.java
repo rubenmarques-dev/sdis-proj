@@ -1,5 +1,7 @@
 package channels;
 
+import handlers.BackupHandler;
+import handlers.ControlHandler;
 import messages.ParserHeader;
 import peer.Peer;
 
@@ -20,35 +22,28 @@ public class ThreadMC extends Thread{
 
     @Override
     public void run() {
-        System.out.println("controlThread");
+     //   System.out.println("controlThread");
         while (true) {
 
 
             try {
+
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                 peer.getControlChannel().getMc_socket().receive(packet);
                 String fields[] = ParserHeader.parse(packet.getData().toString());
-                String type = fields[0];
 
-                if(type.equals("STORED")){
-
-
-                }
-                else if(type.equals("GETCHUNK")) {
-
-                }
-                else if(type.equals("DELETE")) {
-
-                }
-                else if(type.equals("REMOVED")) {
-
+                if(packet.getData() != null)
+                {
+                    System.out.println("-Chamada BackupHanler()");
+                    (new ControlHandler(packet)).run();
                 }
                 else
                 {
                     System.out.println("MENSAGEM MAL RECEBIDA");
                     System.out.println("MENSAGEM: " + packet.getData().toString());
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
