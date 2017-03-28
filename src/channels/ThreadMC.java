@@ -1,5 +1,6 @@
 package channels;
 
+import messages.ParserHeader;
 import peer.Peer;
 
 import javax.sound.midi.Soundbank;
@@ -27,8 +28,27 @@ public class ThreadMC extends Thread{
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                 peer.getControlChannel().getMc_socket().receive(packet);
-                String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Message: " + received);
+                String fields[] = ParserHeader.parse(packet.getData().toString());
+                String type = fields[0];
+
+                if(type.equals("STORED")){
+
+
+                }
+                else if(type.equals("GETCHUNK")) {
+
+                }
+                else if(type.equals("DELETE")) {
+
+                }
+                else if(type.equals("REMOVED")) {
+
+                }
+                else
+                {
+                    System.out.println("MENSAGEM MAL RECEBIDA");
+                    System.out.println("MENSAGEM: " + packet.getData().toString());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

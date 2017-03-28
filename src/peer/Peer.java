@@ -4,9 +4,11 @@ import channels.ThreadMC;
 import channels.ThreadMDB;
 import channels.MulticastChannel;
 import channels.ThreadMDR;
+import messages.PutChunkMsg;
 import rmi.RemoteInterface;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -17,13 +19,13 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Peer implements RemoteInterface{
 
-    private MulticastChannel controlChannel;
-    private MulticastChannel backupChannel;
-    private MulticastChannel restoreChannel;
-    private ThreadMC controlThread;
-    private ThreadMDB deleteThread;
-    private ThreadMDR restoreThread;
-    private int idPeer;
+    public static MulticastChannel controlChannel;
+    public static MulticastChannel backupChannel;
+    public static MulticastChannel restoreChannel;
+    public static ThreadMC controlThread;
+    public static ThreadMDB deleteThread;
+    public static ThreadMDR restoreThread;
+    public static int idPeer;
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
@@ -34,8 +36,15 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String backup() throws RemoteException {
-        return "backup: "+idPeer;
-
+        PutChunkMsg msg = new PutChunkMsg("1.0",idPeer,"teste.txt", 13,"ola".getBytes(),2);
+        System.out.println(msg);
+        DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.getBytes().length,backupChannel.getMc_socket().getInetAddress(),backupChannel.getMc_socket().getPort());
+        try {
+            backupChannel.getMc_socket().send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 
     @Override

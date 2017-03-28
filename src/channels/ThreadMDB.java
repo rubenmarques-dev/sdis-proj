@@ -1,5 +1,6 @@
 package channels;
 
+import handlers.BackupHandler;
 import peer.Peer;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class ThreadMDB extends Thread{
 
     @Override
     public void run() {
-        System.out.println("deleteThread");
+        System.out.println("backupThread");
         while (true) {
 
 
@@ -26,6 +27,16 @@ public class ThreadMDB extends Thread{
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                 peer.getBackupChannel().getMc_socket().receive(packet);
+                if(packet.getData() != null)
+                {
+                    (new BackupHandler(packet)).run();
+                }
+                else
+                {
+                    System.out.println("MENSAGEM MAL RECEBIDA");
+                    System.out.println("MENSAGEM: " + packet.getData().toString());
+                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -4,7 +4,7 @@ package messages;
  * Função static Serve fazer parse ao header dos DataPackets.
  * Retorna um array com os campos.
  */
-abstract  class ParserHeader {
+public  class ParserHeader {
 
         public static String[] parse(String header)
         {
