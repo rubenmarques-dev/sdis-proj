@@ -4,18 +4,24 @@ import channels.ThreadMC;
 import channels.ThreadMDB;
 import channels.MulticastChannel;
 import channels.ThreadMDR;
+import filesystem.BackupFile;
+import filesystem.BackupFileHandler;
+import filesystem.Chunk;
+import filesystem.FileSystemManager;
 import messages.Delete;
 import messages.GetChunk;
 import messages.PutChunk;
 import messages.Removed;
 import rmi.RemoteInterface;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  * Created by ei10117 on 16/03/2017.
@@ -29,24 +35,51 @@ public class Peer implements RemoteInterface{
     public static ThreadMDB deleteThread;
     public static ThreadMDR restoreThread;
     public static int idPeer;
+    private FileSystemManager filesystem;
+    private BackupFileHandler fileHandler;
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
         this.controlThread = new ThreadMC(this);
         this.restoreThread = new ThreadMDR(this);
         this.deleteThread = new ThreadMDB(this);
+        initialize();
+    }
+
+    private boolean initialize() {
+        this.filesystem = new FileSystemManager(this.idPeer);
+        this.fileHandler = new BackupFileHandler();
+        return true;
     }
 
     @Override
-    public String backup() throws RemoteException {
-        PutChunk msg = new PutChunk("1.0",idPeer,"teste.txt", 13,"ola".getBytes(),2);
+    public String backup(String filename) throws RemoteException {
+        //parse ficheiros
+
+        File file = this.filesystem.getOriginalFile(filename);
+
+        if (file == null) {
+            System.out.println("File not found.");
+            System.out.println("File must be in " + this.filesystem.getPathToOriginals());
+            return null;
+        }
+
+        BackupFile bkFile = new BackupFile(file);
+        ArrayList<Chunk> chunks = this.fileHandler.split(bkFile);
+        bkFile.setChunks(chunks);
+        System.out.println(bkFile.getChunks().size());
+
+
+
+        /*PutChunk msg = new PutChunk("1.0",idPeer,"teste.txt", 13,"ola".getBytes(),2);
 
        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,backupChannel.getAdress(),backupChannel.getPort());
         try {
             backupChannel.getMc_socket().send(packet);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
         return "success";
     }
 
@@ -143,6 +176,7 @@ public class Peer implements RemoteInterface{
             //creating peer
             peer = new Peer(idPeer);
 
+
             //creating control channel
             control = args[3].split(":");
             MulticastChannel controlChannel = new MulticastChannel(control[0],Integer.parseInt(control[1]));
@@ -160,7 +194,7 @@ public class Peer implements RemoteInterface{
             peer.setControlChannel(controlChannel);
             peer.setBackupChannel(backupChannel);
             peer.setRestoreChannel(restoreChannel);
-            peer.startChannels();
+          //  peer.startChannels();
 
         }
 

@@ -36,8 +36,11 @@ public class BackupHandler extends Thread{
             String body = fields[6];
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
+
             //save chunk
+
             System.out.println("before send stored");
+
             Stored stored = new Stored(version,senderID,fileID,chunkNum);
             try {
                 Peer.controlChannel.getMc_socket().send(new DatagramPacket(stored.getBytes(),stored.getBytes().length,Peer.controlChannel.getAdress(),Peer.controlChannel.getPort()));

@@ -45,7 +45,8 @@ public class BackupFile {
         
         return String.format("%040x", new BigInteger(1, buffer));
     }
-    
+
+
     private String getFileIdDigest(String tempFileId) {
         StringBuilder hexString = new StringBuilder();
         byte[] hash;

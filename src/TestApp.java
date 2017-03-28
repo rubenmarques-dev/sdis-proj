@@ -50,9 +50,10 @@ public class TestApp {
 
             //subProtocol
             subProtocol  = args[1];
+            filePath = args[2];
             System.out.println("subProtocol: " + subProtocol);
             if(subProtocol.equals("BACKUP"))
-                protocolResponse = remoteInterface.backup();
+                protocolResponse = remoteInterface.backup(filePath);
             else if(subProtocol.equals("RESTORE"))
                 protocolResponse = remoteInterface.restore();
             else if(subProtocol.equals("DELETE"))
