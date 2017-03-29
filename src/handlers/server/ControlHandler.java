@@ -33,6 +33,7 @@ public class ControlHandler extends Thread{
 
             System.out.println("controlHandler: fileid ->  " +  fileID);
             System.out.println("controlHandler: chunkNum -> " +  chunkNum);
+
             if(!Peer.data.fileExist(fileID))
                 System.out.println("ficheiro não foi criado");
             else if(!Peer.data.chunkExists(fileID,chunkNum))
