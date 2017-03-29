@@ -1,4 +1,4 @@
-package handlers;
+package handlers.server;
 
 import messages.ChunkMsg;
 import messages.ParserHeader;
@@ -27,9 +27,9 @@ public class RestoreHandler extends Thread{
         String fields[] = ParserHeader.parse(received);
         String type = fields[0];
 
-        if(type.equals("Chunk"))
+        if(type.equals("Metadata"))
         {
-            System.out.println("type.equals(Chunk)");
+            System.out.println("type.equals(Metadata)");
             String version = fields[1];
             int senderID = Integer.parseInt(fields[2]);
             String fileID = fields[3];

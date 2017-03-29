@@ -1,7 +1,6 @@
 package channels;
 
-import handlers.BackupHandler;
-import handlers.RestoreHandler;
+import handlers.server.RestoreHandler;
 import peer.Peer;
 
 import java.io.IOException;

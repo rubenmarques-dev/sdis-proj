@@ -1,11 +1,9 @@
 package channels;
 
-import handlers.BackupHandler;
-import handlers.ControlHandler;
+import handlers.server.ControlHandler;
 import messages.ParserHeader;
 import peer.Peer;
 
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.net.DatagramPacket;
 

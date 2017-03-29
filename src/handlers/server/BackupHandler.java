@@ -1,5 +1,6 @@
-package handlers;
+package handlers.server;
 
+import filesystem.Chunk;
 import messages.ParserHeader;
 import messages.Stored;
 import peer.Peer;
@@ -23,12 +24,13 @@ public class BackupHandler extends Thread{
     public void run() {
 
         String received = new String(packet.getData(), 0, packet.getLength());
-        System.out.println("received: " + received);
         String fields[] = ParserHeader.parse(received);
         String type = fields[0];
-      //  System.out.println(fields[0]);
+
+        //System.out.println("received: " + received);
 
         if (type.equals("PUTCHUNK")) {
+
             String version = fields[1];
             int senderID = Integer.parseInt(fields[2]);
             String fileID = fields[3];
@@ -37,13 +39,20 @@ public class BackupHandler extends Thread{
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
 
-            //save chunk
+            Chunk chunk = new Chunk(chunkNum, fileID,  body.getBytes());
+
+          //  System.out.println("Metadata " + chunk.getNumber() + " : " + fileID +". Content : " + chunk.getContent().toString());
+
+            //savechunk
 
             System.out.println("before send stored");
 
             Stored stored = new Stored(version,senderID,fileID,chunkNum);
             try {
+
+                //send stored message, after saved putchunk
                 Peer.controlChannel.getMc_socket().send(new DatagramPacket(stored.getBytes(),stored.getBytes().length,Peer.controlChannel.getAdress(),Peer.controlChannel.getPort()));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

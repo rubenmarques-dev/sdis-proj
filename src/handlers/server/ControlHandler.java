@@ -1,6 +1,7 @@
-package handlers;
+package handlers.server;
 
 import messages.ParserHeader;
+import peer.Peer;
 
 import java.net.DatagramPacket;
 
@@ -25,7 +26,25 @@ public class ControlHandler extends Thread{
 
         if(type.equals("STORED"))
         {
+            String version = fields[1];
+            int senderID = Integer.parseInt(fields[2]);
+            String fileID = fields[3];
+            int chunkNum = Integer.parseInt(fields[4]);
+
+            System.out.println("controlHandler: fileid ->  " +  fileID);
+            System.out.println("controlHandler: chunkNum -> " +  chunkNum);
+            if(!Peer.data.fileExist(fileID))
+                System.out.println("ficheiro não foi criado");
+            else if(!Peer.data.chunkExists(fileID,chunkNum))
+                System.out.println("Ficheiro criado, mas não foi criado o chunk");
+            else
+            {
+                Peer.data.getFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
+            }
+
             System.out.println("type.equals(STORED)");
+
+
         }
         else if(type.equals("GETCHUNK"))
         {

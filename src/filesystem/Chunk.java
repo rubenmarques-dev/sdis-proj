@@ -27,6 +27,6 @@ public class Chunk {
 
     public byte[] getContent() {
         return content;
-    }    
+    }
     
 }
