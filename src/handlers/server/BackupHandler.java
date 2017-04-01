@@ -47,7 +47,7 @@ public class BackupHandler extends Thread{
 
             System.out.println("before send stored");
 
-            Stored stored = new Stored(version,senderID,fileID,chunkNum);
+            Stored stored = new Stored(version,Peer.idPeer,fileID,chunkNum);
             try {
 
                 //send stored message, after saved putchunk

@@ -2,6 +2,7 @@ package handlers.client;
 
 import filesystem.BackupFile;
 import filesystem.Chunk;
+import handlers.chunkHandler.ChunkHandler;
 import messages.PutChunk;
 import metadata.Metadata;
 import peer.Peer;
@@ -20,6 +21,7 @@ public class PutChunkHandler extends Thread{
 
     public PutChunkHandler(String filename,int replicationDegree ) {
         this.filename = filename;
+        this.replicationDegree = replicationDegree;
 
     }
 
@@ -39,15 +41,9 @@ public class PutChunkHandler extends Thread{
         bkFile.setChunks(chunks);
         System.out.println(bkFile.getChunks().size());
 
+        for(int i= 0; i< chunks.size(); i++)
+            (new ChunkHandler(chunks.get(i),i,filename)).run();
 
 
-        PutChunk msg = new PutChunk("1.0",Peer.idPeer,filename, 1, chunks.get(0).getContent(),2);
-        Peer.data.getFile(filename).getChunks().put(1,new Metadata());
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,Peer.backupChannel.getAdress(),Peer.backupChannel.getPort());
-        try {
-            Peer.backupChannel.getMc_socket().send(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
