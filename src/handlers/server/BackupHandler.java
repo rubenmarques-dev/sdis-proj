@@ -44,6 +44,7 @@ public class BackupHandler extends Thread{
           //  System.out.println("Metadata " + chunk.getNumber() + " : " + fileID +". Content : " + chunk.getContent().toString());
 
             //savechunk
+            Peer.filesystem.saveChunk(chunk);
 
             System.out.println("before send stored");
 
