@@ -28,7 +28,7 @@ public class ChunkHandler extends Thread{
 
     @Override
     public void run() {
-        System.out.println("ChunkHandler");
+        System.out.println("ChunkHandler: chunk" + chunkNum);
         int repDegree = Peer.data.getFile(filename).getReplicationDegree();
         PutChunk msg = new PutChunk("1.0", Peer.idPeer,filename, chunkNum, chunk.getContent(),repDegree);
         Peer.data.getFile(filename).getChunks().put(chunkNum,new Metadata());
@@ -47,17 +47,15 @@ public class ChunkHandler extends Thread{
             }
 
             try {
-                System.out.println("before sleep");
                 this.sleep(sleepTime);
-                System.out.println("after sleep");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             storedReceived = Peer.data.getFile(filename).getChunks().get(chunkNum).getSavers().size();
-            System.out.println("rep degree: " + repDegree + " - storesReceived: "+ storedReceived);
+
             if(repDegree > storedReceived)
             {
-                System.out.println("inside condition");
+                System.out.println("rep degree: " + repDegree + " - storesReceived: "+ storedReceived);
                 sleepTime = sleepTime * 2;
                 count++;
                 if(count == 5)
@@ -66,6 +64,6 @@ public class ChunkHandler extends Thread{
                     repeat = true;
             }
         }while(repeat);
-        System.out.println("fora do while");
+        System.out.println("chunkHandler: chunk" + chunkNum + " finish.");
     }
 }

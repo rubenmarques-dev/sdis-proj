@@ -29,8 +29,11 @@ public class PutChunkHandler extends Thread{
     public void run() {
 
         File file = Peer.filesystem.getOriginalFile(filename);
+
         Peer.data.addFile(replicationDegree,filename,0);
+
         System.out.println("after addFile");
+
         if (file == null) {
             System.out.println("File not found.");
             System.out.println("File must be in " + Peer.filesystem.getPathToOriginals());
@@ -39,7 +42,7 @@ public class PutChunkHandler extends Thread{
         BackupFile bkFile = new BackupFile(file);
         ArrayList<Chunk> chunks = Peer.fileHandler.split(bkFile);
         bkFile.setChunks(chunks);
-        System.out.println(bkFile.getChunks().size());
+        System.out.println();
 
         for(int i= 0; i< chunks.size(); i++)
             (new ChunkHandler(chunks.get(i),i,filename)).run();

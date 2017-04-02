@@ -33,7 +33,6 @@ public class ThreadMC extends Thread{
 
                 if(packet.getData() != null)
                 {
-                    System.out.println("-Chamada BackupHanler()");
                     (new ControlHandler(packet)).run();
                 }
                 else

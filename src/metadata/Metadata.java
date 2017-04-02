@@ -25,7 +25,9 @@ public class Metadata {
 
     public void addSaver(int peerID)
     {
-        this.savers.add(peerID);
+
+        if( !savers.contains(peerID))
+                this.savers.add(peerID);
     }
 
 

@@ -23,22 +23,28 @@ public class RestoreHandler extends Thread{
     public void run() {
 
         String received = new String(packet.getData(), 0, packet.getLength());
-        System.out.println("received: " + received);
-        String fields[] = ParserHeader.parse(received);
-        String type = fields[0];
 
-        if(type.equals("Metadata"))
+        String fields[] = ParserHeader.parse(received);
+
+        int senderID = Integer.parseInt(fields[2]);
+        if(senderID == Peer.idPeer)
+            return;
+
+        System.out.println("received: " + received);
+
+        String type = fields[0];
+        if(type.equals("CHUNK"))
         {
-            System.out.println("type.equals(Metadata)");
+
             String version = fields[1];
-            int senderID = Integer.parseInt(fields[2]);
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
             String body = fields[6];
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
-            //save chunk
-            System.out.println("before send stored");
+
+            //TODO save chunk
+
             ChunkMsg stored = new ChunkMsg(version,senderID,fileID,chunkNum,"ola".getBytes());
             try {
                 Peer.restoreChannel.getMc_socket().send(new DatagramPacket(stored.getBytes(),stored.getBytes().length,Peer.controlChannel.getAdress(),Peer.controlChannel.getPort()));

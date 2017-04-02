@@ -27,7 +27,6 @@ public class ThreadMDR extends Thread{
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 peer.getBackupChannel().getMc_socket().receive(packet);
                 if (packet.getData() != null) {
-                    System.out.println("-Chamada BackupHanler()");
                     (new RestoreHandler(packet)).run();
                 } else {
                     System.out.println("MENSAGEM MAL RECEBIDA");

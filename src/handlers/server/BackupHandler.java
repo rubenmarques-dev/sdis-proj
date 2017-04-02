@@ -8,6 +8,7 @@ import peer.Peer;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.util.Random;
 
 /**
  * Created by ei10117 on 28/03/2017.
@@ -24,15 +25,20 @@ public class BackupHandler extends Thread{
     public void run() {
 
         String received = new String(packet.getData(), 0, packet.getLength());
+
         String fields[] = ParserHeader.parse(received);
+
+        int senderID = Integer.parseInt(fields[2]);
+        if(senderID == Peer.idPeer)
+            return ;
+
+        System.out.println("received(ch): " + received);
+
         String type = fields[0];
-
-        //System.out.println("received: " + received);
-
         if (type.equals("PUTCHUNK")) {
 
             String version = fields[1];
-            int senderID = Integer.parseInt(fields[2]);
+
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
             String body = fields[6];
@@ -47,7 +53,13 @@ public class BackupHandler extends Thread{
             Peer.filesystem.saveChunk(chunk);
 
             System.out.println("before send stored");
-
+            int sleepTime = (new Random()).nextInt(400);
+            try {
+                System.out.println("Sleeping: " + sleepTime);
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Stored stored = new Stored(version,Peer.idPeer,fileID,chunkNum);
             try {
 
