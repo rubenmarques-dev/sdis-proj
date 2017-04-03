@@ -13,11 +13,11 @@ import java.util.Random;
 /**
  * Created by ei10117 on 28/03/2017.
  */
-public class BackupHandler extends Thread{
+public class MDBHandler extends Thread{
 
     private DatagramPacket packet;
 
-    public BackupHandler(DatagramPacket packet) {
+    public MDBHandler(DatagramPacket packet) {
         this.packet = packet;
     }
 

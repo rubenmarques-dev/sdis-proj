@@ -11,14 +11,14 @@ import java.net.DatagramPacket;
 /**
  * Created by ruben on 01/04/2017.
  */
-public class ChunkHandler extends Thread{
+public class PutchunkHandler extends Thread{
 
     private final Chunk chunk;
     private final int chunkNum;
     private final String filename;
     private long sleepTime;
 
-    public ChunkHandler(Chunk chunk,int chunkNum,String filename) {
+    public PutchunkHandler(Chunk chunk, int chunkNum, String filename) {
         this.chunk = chunk;
         this.chunkNum = chunkNum;
         this.filename = filename;
@@ -28,7 +28,7 @@ public class ChunkHandler extends Thread{
 
     @Override
     public void run() {
-        System.out.println("ChunkHandler: chunk" + chunkNum);
+        System.out.println("PutchunkHandler: chunk" + chunkNum);
         int repDegree = Peer.data.getFile(filename).getReplicationDegree();
         PutChunk msg = new PutChunk("1.0", Peer.idPeer,filename, chunkNum, chunk.getContent(),repDegree);
         Peer.data.getFile(filename).getChunks().put(chunkNum,new Metadata());

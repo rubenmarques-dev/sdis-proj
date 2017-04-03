@@ -11,11 +11,11 @@ import java.net.InetAddress;
 /**
  * Created by ei10117 on 28/03/2017.
  */
-public class RestoreHandler extends Thread{
+public class MDRHandler extends Thread{
 
     private DatagramPacket packet;
 
-    public RestoreHandler(DatagramPacket packet) {
+    public MDRHandler(DatagramPacket packet) {
         this.packet = packet;
     }
 

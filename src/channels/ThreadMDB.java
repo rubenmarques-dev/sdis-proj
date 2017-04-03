@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.BackupHandler;
+import handlers.server.MDBHandler;
 import peer.Peer;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class ThreadMDB extends Thread{
                 peer.getBackupChannel().getMc_socket().receive(packet);
                 if(packet.getData() != null)
                 {
-                    (new BackupHandler(packet)).run();
+                    (new MDBHandler(packet)).run();
                 }
                 else
                 {

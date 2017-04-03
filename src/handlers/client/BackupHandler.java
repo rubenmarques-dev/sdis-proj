@@ -2,24 +2,20 @@ package handlers.client;
 
 import filesystem.BackupFile;
 import filesystem.Chunk;
-import handlers.chunkHandler.ChunkHandler;
-import messages.PutChunk;
-import metadata.Metadata;
+import handlers.chunkHandler.PutchunkHandler;
 import peer.Peer;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.DatagramPacket;
 import java.util.ArrayList;
 
 /**
  * Created by ei10117 on 29/03/2017.
  */
-public class PutChunkHandler extends Thread{
+public class BackupHandler extends Thread{
        private String filename;
        private int replicationDegree;
 
-    public PutChunkHandler(String filename,int replicationDegree ) {
+    public BackupHandler(String filename, int replicationDegree ) {
         this.filename = filename;
         this.replicationDegree = replicationDegree;
 
@@ -45,7 +41,7 @@ public class PutChunkHandler extends Thread{
         System.out.println();
 
         for(int i= 0; i< chunks.size(); i++)
-            (new ChunkHandler(chunks.get(i),i,filename)).run();
+            (new PutchunkHandler(chunks.get(i),i,filename)).run();
 
 
     }

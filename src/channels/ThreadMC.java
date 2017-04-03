@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.ControlHandler;
+import handlers.server.MCHandler;
 import messages.ParserHeader;
 import peer.Peer;
 
@@ -33,7 +33,7 @@ public class ThreadMC extends Thread{
 
                 if(packet.getData() != null)
                 {
-                    (new ControlHandler(packet)).run();
+                    (new MCHandler(packet)).run();
                 }
                 else
                 {

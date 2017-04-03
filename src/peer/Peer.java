@@ -4,26 +4,21 @@ import channels.ThreadMC;
 import channels.ThreadMDB;
 import channels.MulticastChannel;
 import channels.ThreadMDR;
-import filesystem.BackupFile;
 import filesystem.BackupFileHandler;
-import filesystem.Chunk;
 import filesystem.FileSystemManager;
-import handlers.client.PutChunkHandler;
+import handlers.client.BackupHandler;
 import messages.Delete;
 import messages.GetChunk;
-import messages.PutChunk;
 import messages.Removed;
 import metadata.Data;
 import rmi.RemoteInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 /**
  * Created by ei10117 on 16/03/2017.
@@ -61,7 +56,7 @@ public class Peer implements RemoteInterface{
     public String backup(String filename,int replicationDegree) throws RemoteException {
         //parse ficheiros
 
-        (new PutChunkHandler(filename,replicationDegree)).run();
+        (new BackupHandler(filename,replicationDegree)).run();
 
         return "success";
     }

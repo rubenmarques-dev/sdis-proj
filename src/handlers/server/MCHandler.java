@@ -8,11 +8,11 @@ import java.net.DatagramPacket;
 /**
  * Created by ei10117 on 28/03/2017.
  */
-public class ControlHandler extends Thread{
+public class MCHandler extends Thread{
 
     private DatagramPacket packet;
 
-    public ControlHandler(DatagramPacket packet) {
+    public MCHandler(DatagramPacket packet) {
         this.packet = packet;
     }
 
@@ -32,6 +32,7 @@ public class ControlHandler extends Thread{
         String type = fields[0];
         if(type.equals("STORED"))
         {
+            System.out.println("type.equals(STORED)");
             String version = fields[1];
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
@@ -45,7 +46,7 @@ public class ControlHandler extends Thread{
                 Peer.data.getFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
             }
 
-            System.out.println("type.equals(STORED)");
+
 
 
         }

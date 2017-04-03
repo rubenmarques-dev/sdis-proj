@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.RestoreHandler;
+import handlers.server.MDRHandler;
 import peer.Peer;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class ThreadMDR extends Thread{
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 peer.getBackupChannel().getMc_socket().receive(packet);
                 if (packet.getData() != null) {
-                    (new RestoreHandler(packet)).run();
+                    (new MDRHandler(packet)).run();
                 } else {
                     System.out.println("MENSAGEM MAL RECEBIDA");
                     System.out.println("MENSAGEM: " + packet.getData().toString());
