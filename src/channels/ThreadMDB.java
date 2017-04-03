@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.MDBHandler;
+import handlers.channels.MDBHandler;
 import peer.Peer;
 
 import java.io.IOException;

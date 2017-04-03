@@ -1,4 +1,4 @@
-package handlers.server;
+package handlers.channels;
 
 import filesystem.Chunk;
 import messages.ParserHeader;

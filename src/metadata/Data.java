@@ -21,12 +21,14 @@ public class Data {
     {
         files.put(fileID,new File(repDegree,fileID,size));
     }
-
-   public File getFile(String fileId)
+    public File getFile(String fileId)
    {
        return files.get(fileId);
    }
 
+    public void removeFile(String fileID){
+        files.remove(fileID);
+    }
     public HashMap<String, File> getFiles() {
         return files;
     }

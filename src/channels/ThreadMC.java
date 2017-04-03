@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.MCHandler;
+import handlers.channels.MCHandler;
 import messages.ParserHeader;
 import peer.Peer;
 

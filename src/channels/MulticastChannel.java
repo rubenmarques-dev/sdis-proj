@@ -59,4 +59,6 @@ public class MulticastChannel extends Thread{
         return mc_addr;
     }
 
+    public void sendMessage(DatagramPacket packet) throws IOException { mc_socket.send(packet);}
+
 }

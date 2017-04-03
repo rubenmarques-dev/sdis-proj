@@ -8,7 +8,7 @@ package messages;
 <Version>
  This is the version of the protocol.
 <SenderId>
- This is the id of the server that has sent the message.
+ This is the id of the channels that has sent the message.
 <FileId>
  This is the file identifier for the backup service.
 <ChunkNo>

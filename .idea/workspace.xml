@@ -2,27 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54e48da8-08f5-4a57-b09b-e4c18ba79789" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/chunkHandler/ChunkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/client/PutChunkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/BackupHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/ControlHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/RestoreHandler.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/chunkHandler/ChunkHandler.java" afterPath="$PROJECT_DIR$/src/handlers/chunkHandler/PutchunkHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/client/PutChunkHandler.java" afterPath="$PROJECT_DIR$/src/handlers/client/BackupHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/BackupHandler.java" afterPath="$PROJECT_DIR$/src/handlers/server/MDBHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/ControlHandler.java" afterPath="$PROJECT_DIR$/src/handlers/server/MCHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/RestoreHandler.java" afterPath="$PROJECT_DIR$/src/handlers/server/MDRHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMC.class" afterPath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMC.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDB.class" afterPath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDB.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDR.class" afterPath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDR.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/sdis/filesystem/FileSystemManager.class" afterPath="$PROJECT_DIR$/out/production/sdis/filesystem/FileSystemManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/sdis/peer/Peer.class" afterPath="$PROJECT_DIR$/out/production/sdis/peer/Peer.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/channels/MulticastChannel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMC.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDB.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/channels/ThreadMDR.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/chunkHandler/PutchunkHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/MCHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/MDBHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/handlers/server/MDRHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/messages/Header.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/metadata/Data.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/peer/Peer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/sdis/rmi/RemoteInterface.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/MCHandler.java" afterPath="$PROJECT_DIR$/src/handlers/channels/MCHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/MDBHandler.java" afterPath="$PROJECT_DIR$/src/handlers/channels/MDBHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/handlers/server/MDRHandler.java" afterPath="$PROJECT_DIR$/src/handlers/channels/MDRHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TestApp.java" afterPath="$PROJECT_DIR$/src/TestApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/channels/MulticastChannel.java" afterPath="$PROJECT_DIR$/src/channels/MulticastChannel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/channels/ThreadMC.java" afterPath="$PROJECT_DIR$/src/channels/ThreadMC.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/channels/ThreadMDB.java" afterPath="$PROJECT_DIR$/src/channels/ThreadMDB.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/channels/ThreadMDR.java" afterPath="$PROJECT_DIR$/src/channels/ThreadMDR.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/filesystem/FileSystemManager.java" afterPath="$PROJECT_DIR$/src/filesystem/FileSystemManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/messages/Header.java" afterPath="$PROJECT_DIR$/src/messages/Header.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/metadata/Data.java" afterPath="$PROJECT_DIR$/src/metadata/Data.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/peer/Peer.java" afterPath="$PROJECT_DIR$/src/peer/Peer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rmi/RemoteInterface.java" afterPath="$PROJECT_DIR$/src/rmi/RemoteInterface.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,18 +48,30 @@
       <file leaf-file-name="PutchunkHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/handlers/chunkHandler/PutchunkHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="765">
+              <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadMDB.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDB.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackupHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BackupHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/handlers/client/BackupHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="410">
+              <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1491225993485" expanded="true" signature="1199:1205" ph="{...}" />
@@ -64,93 +80,75 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MDBHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/handlers/server/MDBHandler.java">
+      <file leaf-file-name="DeleteHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/handlers/client/DeleteHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackupFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/filesystem/BackupFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="545">
+              <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
               <folding>
-                <element signature="method#getFileSample#0;class#BackupFile#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSystemManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/filesystem/FileSystemManager.java">
+      <file leaf-file-name="TestApp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TestApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="94" column="48" lean-forward="false" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
+            <state relative-caret-position="385">
+              <caret line="63" column="66" lean-forward="false" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chunk.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/filesystem/Chunk.java">
+      <file leaf-file-name="RestoreHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/handlers/client/RestoreHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="136">
+              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="28" />
               <folding>
-                <element signature="e#485#486#0" expanded="true" />
-                <element signature="e#515#516#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MCHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/handlers/server/MCHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/handlers/channels/MCHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4">
-              <caret line="34" column="54" lean-forward="false" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+            <state relative-caret-position="338">
+              <caret line="58" column="47" lean-forward="false" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreadMDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDB.java">
+      <file leaf-file-name="Peer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/peer/Peer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+            <state relative-caret-position="223">
+              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Metadata.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/metadata/Metadata.java">
+      <file leaf-file-name="ThreadMDR.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <marker date="1491222130681" expanded="false" signature="565:571" ph=" }" />
-                <marker date="1491222130681" expanded="false" signature="598:609" ph=" { " />
-                <marker date="1491222130681" expanded="false" signature="621:627" ph=" }" />
-                <marker date="1491222130681" expanded="false" signature="662:673" ph=" { " />
-                <marker date="1491222130681" expanded="false" signature="690:696" ph=" }" />
-                <marker date="1491222130681" expanded="true" signature="726:1035" ph="{...}" />
-              </folding>
+            <state relative-caret-position="221">
+              <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Stored.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/messages/Stored.java">
+      <file leaf-file-name="MDRHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/handlers/channels/MDRHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="453">
+              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -176,7 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/channels/MulticastChannel.java" />
         <option value="$PROJECT_DIR$/src/handlers/RestoreHandler.java" />
         <option value="$PROJECT_DIR$/src/messages/DeleteMsg.java" />
         <option value="$PROJECT_DIR$/src/messages/RemovedMsg.java" />
@@ -190,21 +187,28 @@
         <option value="$PROJECT_DIR$/src/handlers/PutChunkHandler.java" />
         <option value="$PROJECT_DIR$/src/metadata/Record.java" />
         <option value="$PROJECT_DIR$/src/metadata/File.java" />
-        <option value="$PROJECT_DIR$/src/rmi/RemoteInterface.java" />
-        <option value="$PROJECT_DIR$/src/metadata/Data.java" />
-        <option value="$PROJECT_DIR$/src/peer/Peer.java" />
-        <option value="$PROJECT_DIR$/src/TestApp.java" />
         <option value="$PROJECT_DIR$/src/handlers/server/RestoreHandler.java" />
-        <option value="$PROJECT_DIR$/src/channels/ThreadMC.java" />
-        <option value="$PROJECT_DIR$/src/channels/ThreadMDB.java" />
         <option value="$PROJECT_DIR$/src/channels/ThreadMDR.java" />
-        <option value="$PROJECT_DIR$/src/handlers/chunkHandler/ChunkHandler.java" />
         <option value="$PROJECT_DIR$/src/handlers/client/PutChunkHandler.java" />
         <option value="$PROJECT_DIR$/src/metadata/Metadata.java" />
         <option value="$PROJECT_DIR$/src/handlers/server/BackupHandler.java" />
         <option value="$PROJECT_DIR$/src/filesystem/FileSystemManager.java" />
         <option value="$PROJECT_DIR$/src/handlers/server/ControlHandler.java" />
         <option value="$PROJECT_DIR$/src/handlers/client/BackupHandler.java" />
+        <option value="$PROJECT_DIR$/src/handlers/chunkHandler/ChunkHandler.java" />
+        <option value="$PROJECT_DIR$/src/channels/MulticastChannel.java" />
+        <option value="$PROJECT_DIR$/src/handlers/chunkHandler/GetchunkHandler.java" />
+        <option value="$PROJECT_DIR$/src/handlers/client/RestoreHandler.java" />
+        <option value="$PROJECT_DIR$/src/handlers/server/MDRHandler.java" />
+        <option value="$PROJECT_DIR$/src/handlers/server/MCHandler.java" />
+        <option value="$PROJECT_DIR$/src/peer/Peer.java" />
+        <option value="$PROJECT_DIR$/src/rmi/RemoteInterface.java" />
+        <option value="$PROJECT_DIR$/src/metadata/Data.java" />
+        <option value="$PROJECT_DIR$/src/channels/ThreadMC.java" />
+        <option value="$PROJECT_DIR$/src/channels/ThreadMDB.java" />
+        <option value="$PROJECT_DIR$/src/handlers/channels/MCHandler.java" />
+        <option value="$PROJECT_DIR$/src/handlers/client/DeleteHandler.java" />
+        <option value="$PROJECT_DIR$/src/TestApp.java" />
       </list>
     </option>
   </component>
@@ -275,11 +279,61 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="handlers" />
+              <option name="myItemId" value="rmi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="peer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="metadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -324,6 +378,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="chunkHandler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handlers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -801,21 +877,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="DELETE" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="TestApp" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="1900 DELETE" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="sdis" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="REMOVED" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="TestApp" />
@@ -906,16 +967,31 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="DELETE" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="TestApp" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="1900 DELETE sara.jpg" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="sdis" />
+      <envs />
+      <method />
+    </configuration>
     <list size="9">
       <item index="0" class="java.lang.String" itemvalue="Application.Peer1" />
       <item index="1" class="java.lang.String" itemvalue="Application.Peer2" />
-      <item index="2" class="java.lang.String" itemvalue="Application.DELETE" />
-      <item index="3" class="java.lang.String" itemvalue="Application.REMOVED" />
-      <item index="4" class="java.lang.String" itemvalue="Application.RESTORE" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Peer3" />
-      <item index="6" class="java.lang.String" itemvalue="Application.Peer4" />
-      <item index="7" class="java.lang.String" itemvalue="Application.BACKUP" />
-      <item index="8" class="java.lang.String" itemvalue="Application.STATE" />
+      <item index="2" class="java.lang.String" itemvalue="Application.REMOVED" />
+      <item index="3" class="java.lang.String" itemvalue="Application.RESTORE" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Peer3" />
+      <item index="5" class="java.lang.String" itemvalue="Application.Peer4" />
+      <item index="6" class="java.lang.String" itemvalue="Application.BACKUP" />
+      <item index="7" class="java.lang.String" itemvalue="Application.STATE" />
+      <item index="8" class="java.lang.String" itemvalue="Application.DELETE" />
     </list>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
@@ -954,12 +1030,12 @@
       <updated>1490710352981</updated>
       <workItem from="1490710355270" duration="10101000" />
       <workItem from="1490794455375" duration="8759000" />
-      <workItem from="1491222513930" duration="2321000" />
+      <workItem from="1491222513930" duration="5893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21181000" />
+    <option name="totallyTimeSpent" value="24753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -967,7 +1043,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767624" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1018,34 +1094,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MDBHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/peer/Peer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="55" column="51" lean-forward="false" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TestApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,10 +1106,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MDBHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MDBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
@@ -1075,7 +1129,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MCHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MCHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="54" />
@@ -1096,17 +1150,17 @@
         <state relative-caret-position="561">
           <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#343#344#0" expanded="false" />
+            <element signature="e#408#409#0" expanded="false" />
+            <element signature="e#452#453#0" expanded="false" />
+            <element signature="e#490#491#0" expanded="false" />
+            <element signature="e#616#617#0" expanded="false" />
+            <element signature="e#644#645#0" expanded="false" />
+            <element signature="e#701#702#0" expanded="false" />
+            <element signature="e#735#736#0" expanded="false" />
+            <element signature="e#786#787#0" expanded="false" />
+            <element signature="e#834#835#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1117,11 +1171,6 @@
           <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <marker date="1491222130681" expanded="false" signature="565:571" ph=" }" />
-            <marker date="1491222130681" expanded="false" signature="598:609" ph=" { " />
-            <marker date="1491222130681" expanded="false" signature="621:627" ph=" }" />
-            <marker date="1491222130681" expanded="false" signature="662:673" ph=" { " />
-            <marker date="1491222130681" expanded="false" signature="690:696" ph=" }" />
-            <marker date="1491222130681" expanded="true" signature="726:1035" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1166,6 +1215,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="55" column="66" lean-forward="false" selection-start-line="55" selection-start-column="66" selection-end-line="55" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,6 +1223,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,8 +1240,8 @@
         <state relative-caret-position="68">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="e#485#486#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="false" />
+            <element signature="e#515#516#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1221,18 +1272,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MDBHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MDBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/messages/Header.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1252,13 +1296,6 @@
       </provider>
     </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_101/jre/lib/rt.jar!/com/sun/xml/internal/ws/api/pipe/Engine.class" />
-    <entry file="file://$PROJECT_DIR$/src/messages/Delete.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/messages/ChunkMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1270,170 +1307,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/joao/server/Peer.java" />
-    <entry file="file://$PROJECT_DIR$/src/filesystem/BackupFileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/channels/MulticastChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/RemoteInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metadata/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/messages/PutChunk.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/peer/Peer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="55" column="51" lean-forward="false" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MDRHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metadata/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="66" column="22" lean-forward="false" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#554#555#0" expanded="false" />
-            <element signature="e#583#584#0" expanded="false" />
-            <element signature="e#627#628#0" expanded="false" />
-            <element signature="e#663#664#0" expanded="false" />
-            <element signature="e#716#717#0" expanded="false" />
-            <element signature="e#745#746#0" expanded="false" />
-            <element signature="e#809#810#0" expanded="false" />
-            <element signature="e#845#846#0" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#937#938#0" expanded="false" />
-            <element signature="e#969#970#0" expanded="false" />
-            <element signature="e#1022#1023#0" expanded="false" />
-            <element signature="e#1075#1076#0" expanded="false" />
-            <element signature="e#1116#1117#0" expanded="false" />
-            <element signature="e#1156#1157#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/src.zip!/java/util/ArrayList.java" />
-    <entry file="file://$PROJECT_DIR$/src/metadata/Metadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <marker date="1491222130681" expanded="false" signature="565:571" ph=" }" />
-            <marker date="1491222130681" expanded="false" signature="598:609" ph=" { " />
-            <marker date="1491222130681" expanded="false" signature="621:627" ph=" }" />
-            <marker date="1491222130681" expanded="false" signature="662:673" ph=" { " />
-            <marker date="1491222130681" expanded="false" signature="690:696" ph=" }" />
-            <marker date="1491222130681" expanded="true" signature="726:1035" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/messages/Stored.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/chunkHandler/PutchunkHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MDBHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1443,8 +1334,8 @@
         <state relative-caret-position="374">
           <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding>
-            <element signature="e#485#486#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="false" />
+            <element signature="e#515#516#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1467,22 +1358,187 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/handlers/server/MCHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/messages/Delete.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="34" column="54" lean-forward="false" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+        <state relative-caret-position="85">
+          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messages/Header.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/chunkHandler/GetchunkHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/RemoteInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MDBHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="57" column="61" lean-forward="true" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/filesystem/BackupFileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metadata/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metadata/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/metadata/Metadata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="38" />
+          <folding>
+            <marker date="1491222130681" expanded="false" signature="565:571" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/channels/MulticastChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="36" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/channels/ThreadMDR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MDRHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/chunkHandler/PutchunkHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="59" column="24" lean-forward="true" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/client/RestoreHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/handlers/client/BackupHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="410">
+          <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1491225993485" expanded="true" signature="1199:1205" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/channels/MCHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="58" column="47" lean-forward="false" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/handlers/client/DeleteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="63" column="66" lean-forward="false" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/peer/Peer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

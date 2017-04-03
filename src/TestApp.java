@@ -59,8 +59,10 @@ public class TestApp {
             }
             else if(subProtocol.equals("RESTORE"))
                 protocolResponse = remoteInterface.restore();
-            else if(subProtocol.equals("DELETE"))
-                protocolResponse = remoteInterface.delete();
+            else if(subProtocol.equals("DELETE")) {
+                filePath = args[2];
+                protocolResponse = remoteInterface.delete(filePath);
+            }
             else if(subProtocol.equals("REMOVED"))
                 protocolResponse = remoteInterface.reclaim();
             else if(subProtocol.equals("STATE"))

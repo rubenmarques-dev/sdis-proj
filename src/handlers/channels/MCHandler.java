@@ -1,4 +1,4 @@
-package handlers.server;
+package handlers.channels;
 
 import messages.ParserHeader;
 import peer.Peer;
@@ -38,7 +38,7 @@ public class MCHandler extends Thread{
             int chunkNum = Integer.parseInt(fields[4]);
 
             if(!Peer.data.fileExist(fileID))
-                System.out.println("ficheiro não foi criado");
+                System.out.println("ficheiro não foi criado/não sou owner do ficheiro");
             else if(!Peer.data.chunkExists(fileID,chunkNum))
                 System.out.println("Ficheiro criado, mas não foi criado o chunk");
             else
@@ -56,7 +56,7 @@ public class MCHandler extends Thread{
         }
         else if(type.equals("DELETE"))
         {
-            System.out.println("type.equals(DELETE)");
+            //TODO apaga da DBS dando um fileID
         }
         else if(type.equals("REMOVED"))
         {

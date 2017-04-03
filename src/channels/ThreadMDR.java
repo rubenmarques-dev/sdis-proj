@@ -1,6 +1,6 @@
 package channels;
 
-import handlers.server.MDRHandler;
+import handlers.channels.MDRHandler;
 import peer.Peer;
 
 import java.io.IOException;

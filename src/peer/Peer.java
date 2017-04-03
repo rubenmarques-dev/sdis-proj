@@ -7,6 +7,7 @@ import channels.ThreadMDR;
 import filesystem.BackupFileHandler;
 import filesystem.FileSystemManager;
 import handlers.client.BackupHandler;
+import handlers.client.DeleteHandler;
 import messages.Delete;
 import messages.GetChunk;
 import messages.Removed;
@@ -75,15 +76,9 @@ public class Peer implements RemoteInterface{
     }
 
     @Override
-    public String delete() throws RemoteException {
-        Delete msg = new Delete("1.0",idPeer,"teste.txt");
+    public String delete(String filename) throws RemoteException {
 
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
-        try {
-            controlChannel.getMc_socket().send(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new DeleteHandler(filename).run();
         return "success";
     }
 
