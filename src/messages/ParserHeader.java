@@ -1,17 +1,56 @@
 package messages;
 
-/**
- * Função static Serve fazer parse ao header dos DataPackets.
- * Retorna um array com os campos.
- */
-public  class ParserHeader {
+import java.io.IOException;
+import java.util.Arrays;
 
-        public static String[] parse(String header)
-        {
-            header = header.replaceAll("[\n|\r]", "");
-            String[] fields = null;
-            fields = header.split(" ");
-            return fields;
-        }
+/**
+ * Created by ei10117 on 08/04/2017.
+ */
+public class ParserHeader {
+    private byte[] body;
+    private String[] fields;
+    public ParserHeader() {
+    }
+
+    public void parse(byte[] buffer){
+        String header = new String(buffer, 0, buffer.length);
+        header = header.replaceAll("[\n|\r]", "");
+        fields = null;
+        fields = header.split(" ");
+    }
+
+    public void parseBody(byte[] buffer, int size){
+
+        String received = new String(buffer, 0, buffer.length);
+        StringBuffer str = new StringBuffer(received);
+
+        int pos = str.indexOf("\n\r");
+        int pos2 = str.indexOf("\n\r");
+
+        body = Arrays.copyOfRange(buffer, pos2 +2, size);
+        String aux = new String(Arrays.copyOfRange(buffer,0, pos - 1));
+        System.out.println(aux);
+        fields = null;
+        fields = aux.split(" ");
+
+    }
+
+
+
+    public byte[] getBody() {
+        return body;
+    }
+
+    public void setBody(byte[] body) {
+        this.body = body;
+    }
+
+    public String[] getFields() {
+        return fields;
+    }
+
+    public void setFields(String[] fields) {
+        this.fields = fields;
+    }
 
 }

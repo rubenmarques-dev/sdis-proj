@@ -5,9 +5,7 @@
 
 package filesystem;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -58,16 +56,6 @@ public class FileSystemManager {
         return this.backups.toString();
     }
 
-    public File getOriginalFile(String filename) {
-        File file = new File(this.getPathToOriginals() + "/" + filename);
-
-        if (!file.exists()) {
-            file = null;
-        }
-
-        return file;
-    }
-
     public boolean createDir(String dirname) {
         Path newDir = Paths.get(this.backups.toString(), dirname);
 
@@ -79,6 +67,47 @@ public class FileSystemManager {
         }
 
         return true;
+    }
+
+    public File getOriginalFile(String filename) {
+        File file = new File(this.getPathToOriginals() + "/" + filename);
+
+        if (!file.exists()) {
+            file = null;
+        }
+
+        return file;
+    }
+
+    public boolean deleteOriginalFile(String filename) {
+        File file = this.getOriginalFile(filename);
+        return file.exists() && file.delete();
+    }
+
+    public Chunk getChunk(String fileId, int chunkNumber) {
+        File file = new File(this.getPathToBackups()
+                + "/"
+                + fileId
+                + "/"
+                + chunkNumber
+                + ".chunk"
+        );
+
+        if (!file.exists()) {
+            return null;
+        }
+
+        byte[] buffer = new byte[(int)file.length()];
+        Chunk chunk = new Chunk(chunkNumber, fileId, buffer);
+
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+            bis.read(buffer);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+        return chunk;
     }
 
     public boolean saveChunk(Chunk chunk) {
@@ -102,4 +131,15 @@ public class FileSystemManager {
         return true;
     }
 
+    public boolean deleteChunk(String fileId, int chunkNumber) {
+        File file = new File(this.getPathToBackups()
+                + "/"
+                + fileId
+                + "/"
+                + chunkNumber
+                + ".chunk"
+        );
+
+        return file.exists() && file.delete();
+    }
 }

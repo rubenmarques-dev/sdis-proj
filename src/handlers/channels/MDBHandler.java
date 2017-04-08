@@ -5,6 +5,8 @@ import messages.ParserHeader;
 import messages.Stored;
 import peer.Peer;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -16,23 +18,29 @@ import java.util.Random;
 public class MDBHandler extends Thread{
 
     private DatagramPacket packet;
+    private byte[] buffer;
 
     public MDBHandler(DatagramPacket packet) {
         this.packet = packet;
+
     }
 
     @Override
     public void run() {
 
-        String received = new String(packet.getData(), 0, packet.getLength());
+        ParserHeader parserHeader = new ParserHeader();
+        byte[] buffer = packet.getData();
 
-        String fields[] = ParserHeader.parse(received);
+        parserHeader.parseBody(buffer, packet.getLength());
+        String[] fields = parserHeader.getFields();
 
+       // ParserHeader.parse(packet.getData());
+        //String[] fields = null;
         int senderID = Integer.parseInt(fields[2]);
         if(senderID == Peer.idPeer)
             return ;
 
-        System.out.println("received(ch): " + received);
+      //  System.out.println("received(ch): " + received);
 
         String type = fields[0];
         if (type.equals("PUTCHUNK")) {
@@ -41,13 +49,13 @@ public class MDBHandler extends Thread{
 
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
-            String body = fields[6];
+
+            byte[] buf = parserHeader.getBody();
+            System.out.println(buf);
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
 
-            Chunk chunk = new Chunk(chunkNum, fileID,  body.getBytes());
-
-          //  System.out.println("Metadata " + chunk.getNumber() + " : " + fileID +". Content : " + chunk.getContent().toString());
+            Chunk chunk = new Chunk(chunkNum, fileID,  buf);
 
             //savechunk
             Peer.filesystem.saveChunk(chunk);
@@ -69,7 +77,7 @@ public class MDBHandler extends Thread{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+           // Peer.register.addRecord(type,chunkNum,senderID,fileID);
         }
         else
         {

@@ -11,10 +11,6 @@ public class Delete extends Header {
         this.type = "DELETE";
     }
 
-    @Override
-    public String getHeader() {
-        //ws = " "
-        return type + ws + version + ws + senderID + ws + fileID + ws + CRLF + CRLF;
-    }
+
 
 }

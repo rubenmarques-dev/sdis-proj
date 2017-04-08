@@ -20,9 +20,7 @@ public class DeleteHandler extends  Thread {
     public void run() {
 
         Delete msg = new Delete("1.0", Peer.idPeer, filename);
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(), msg.getHeader().getBytes().length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
-
-        Boolean again;
+        DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
 
         int trys = Peer.data.getFile(filename).getChunks().size();
 

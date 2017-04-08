@@ -26,10 +26,9 @@ public class ThreadMC extends Thread{
 
             try {
 
-                byte[] buffer = new byte[256];
+                byte[] buffer = new byte[65536];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                 peer.getControlChannel().getMc_socket().receive(packet);
-                String fields[] = ParserHeader.parse(packet.getData().toString());
 
                 if(packet.getData() != null)
                 {

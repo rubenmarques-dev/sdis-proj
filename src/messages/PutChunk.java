@@ -3,22 +3,20 @@ package messages;
 /**
  * Created by zabrn on 19/03/2016.
  */
-public class PutChunk extends ChunkMsg {
+public class PutChunk extends Header {
 
-    private int replicationDeg;
+
 
 
     public PutChunk(String version, int senderID, String fileId, int chunkNo, byte[] body, int replicationDeg) {
-        super(version, senderID, fileId, chunkNo, body);
+        super(version, senderID, fileId);
         this.type = "PUTCHUNK";
+        this.chunkNo = chunkNo;
         this.replicationDeg = replicationDeg;
+        this.body = body;
 
 
     }
 
-    @Override
-    public String getHeader() {
-        // ws = " "
-        return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + replicationDeg + ws + CRLF + CRLF + body;
-    }
+
 }

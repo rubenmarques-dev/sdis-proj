@@ -5,8 +5,6 @@ package messages;
  */
 public class GetChunk extends Header {
 
-    //sequence of ASCII characters corresponding to the decimal representation of that number,
-    protected int chunkNo;
 
     public GetChunk(String version, int senderID, String fileId, int chunkNo) {
         super(version, senderID, fileId);
@@ -14,8 +12,5 @@ public class GetChunk extends Header {
         this.chunkNo = chunkNo;
     }
 
-    @Override
-    public String getHeader() {
-        return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + CRLF + CRLF;
-    }
+
 }

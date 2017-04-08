@@ -3,6 +3,7 @@ package filesystem;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BackupFileHandler {
     
@@ -22,12 +23,14 @@ public class BackupFileHandler {
         System.out.println("Should be splitted in " + chunkQty + " chunk(s).");
         
         ArrayList<Chunk> chunks = new ArrayList<>();
-        byte[] buffer = new byte[this.MAX_CHUNK_SIZE];
         int chunkNumber = 0;
+        int bytesRead;
+        byte[] inputBuffer = new byte[this.MAX_CHUNK_SIZE];
 
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(bkFile.getFile()))) {
-            while (bis.read(buffer) > 0) {
-                Chunk chunk = new Chunk(chunkNumber++, bkFile.getFileId(), buffer);
+            while ((bytesRead = bis.read(inputBuffer)) > 0) {
+                byte[] outputBuffer = Arrays.copyOf(inputBuffer, bytesRead);
+                Chunk chunk = new Chunk(chunkNumber++, bkFile.getFileId(), outputBuffer);
                 chunks.add(chunk);
             }
 
