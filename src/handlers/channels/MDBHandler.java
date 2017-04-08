@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -50,8 +51,10 @@ public class MDBHandler extends Thread{
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
 
+
             byte[] buf = parserHeader.getBody();
             System.out.println(buf);
+
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
 
