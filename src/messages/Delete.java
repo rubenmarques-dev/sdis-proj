@@ -5,12 +5,9 @@ package messages;
  */
 public class Delete extends Header {
 
-
     public Delete(String version, int senderID, String fileID) {
         super(version, senderID, fileID);
         this.type = "DELETE";
     }
-
-
 
 }

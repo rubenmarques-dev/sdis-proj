@@ -32,7 +32,7 @@ public class PutchunkHandler extends Thread{
 
         int repDegree = Peer.data.getFile(filename).getReplicationDegree();
         PutChunk msg = new PutChunk("1.0", Peer.idPeer,filename, chunkNum, chunk.getContent(),repDegree);
-        Peer.data.getFile(filename).getChunks().put(chunkNum,new Metadata());
+        Peer.data.getFile(filename).getChunks().put(chunkNum, new Metadata());
 
         byte[] buf = msg.getBytes();
 
@@ -50,8 +50,8 @@ public class PutchunkHandler extends Thread{
         int storedReceived = 0;
         boolean repeat;
         int count = 0;
-        do {
 
+        do {
             repeat = false;
             try {
                 Peer.backupChannel.getMc_socket().send(packet);
@@ -76,7 +76,7 @@ public class PutchunkHandler extends Thread{
                 else
                     repeat = true;
             }
-        }while(repeat);
+        } while(repeat);
         System.out.println("chunkHandler: chunk" + chunkNum + " finish.");
     }
 }

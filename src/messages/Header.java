@@ -1,4 +1,3 @@
-
 package messages;
 
 import java.nio.charset.StandardCharsets;
@@ -22,7 +21,6 @@ import java.nio.charset.StandardCharsets;
 
 public abstract class Header {
 
-
     protected String type;
     protected String version;
     protected int senderID;
@@ -33,51 +31,49 @@ public abstract class Header {
     protected String ws = " ";
     protected byte[] body;
 
-
     public Header(String version, int senderID, String fileID) {
         this.version = version;
         this.senderID = senderID;
         this.fileID = fileID;
     }
 
+    public byte[] getBytes() {
+        StringBuilder builder = new StringBuilder();
 
-        public byte[] getBytes() {
-            StringBuilder builder = new StringBuilder();
-
-            if (type != null) {
-                builder.append(type);
-                builder.append(" ");
-            }
-
-            if (version != null) {
-                builder.append(version.toString());
-                builder.append(" ");
-            }
-
-            if (Integer.toString(senderID) != null) {
-                builder.append(Integer.toString(senderID).toString());
-                builder.append(" ");
-            }
-
-            if (fileID != null) {
-                builder.append(fileID);
-                builder.append(" ");
-            }
-
-            if (Integer.toString(chunkNo) != null) {
-                builder.append(Integer.toString(chunkNo).toString());
-                builder.append(" ");
-            }
-
-            if (Integer.toString(replicationDeg) != null) {
-                builder.append(Integer.toString(replicationDeg).toString());
-                builder.append(" ");
-            }
-
-            builder.append(CRLF);
-            builder.append(CRLF);
-            return builder.toString().getBytes(StandardCharsets.UTF_8);
+        if (type != null) {
+            builder.append(type);
+            builder.append(" ");
         }
 
+        if (version != null) {
+            builder.append(version.toString());
+            builder.append(" ");
+        }
+
+        if (Integer.toString(senderID) != null) {
+            builder.append(Integer.toString(senderID).toString());
+            builder.append(" ");
+        }
+
+        if (fileID != null) {
+            builder.append(fileID);
+            builder.append(" ");
+        }
+
+        if (Integer.toString(chunkNo) != null) {
+            builder.append(Integer.toString(chunkNo).toString());
+            builder.append(" ");
+        }
+
+        if (Integer.toString(replicationDeg) != null) {
+            builder.append(Integer.toString(replicationDeg).toString());
+            builder.append(" ");
+        }
+
+        builder.append(CRLF);
+        builder.append(CRLF);
+
+        return builder.toString().getBytes(StandardCharsets.UTF_8);
+    }
 
 }
