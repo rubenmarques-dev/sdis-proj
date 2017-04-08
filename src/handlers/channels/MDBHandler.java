@@ -53,7 +53,7 @@ public class MDBHandler extends Thread{
 
 
             byte[] buf = parserHeader.getBody();
-            System.out.println(buf);
+            System.out.println("buffer_size: " + buf.length);
 
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();

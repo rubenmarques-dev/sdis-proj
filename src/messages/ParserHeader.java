@@ -24,11 +24,12 @@ public class ParserHeader {
         String received = new String(buffer, 0, buffer.length);
         StringBuffer str = new StringBuffer(received);
 
-        int pos = str.indexOf("\n\r");
-        int pos2 = str.indexOf("\n\r");
+        int pos = str.indexOf("\n\r\n\r");
 
-        body = Arrays.copyOfRange(buffer, pos2 +2, size);
-        String aux = new String(Arrays.copyOfRange(buffer,0, pos - 1));
+
+        body = Arrays.copyOfRange(buffer, pos + 4, size);
+
+        String aux = new String(Arrays.copyOfRange(buffer,0, pos));
         System.out.println(aux);
         fields = null;
         fields = aux.split(" ");
