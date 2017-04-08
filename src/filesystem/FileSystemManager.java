@@ -81,7 +81,7 @@ public class FileSystemManager {
 
     public boolean deleteOriginalFile(String filename) {
         File file = this.getOriginalFile(filename);
-        return true;
+        return file.exists() && file.delete();
     }
 
     public Chunk getChunk(String fileId, int chunkNumber) {
