@@ -2,10 +2,13 @@
  * @author ojoaofernandes
  * @created March 23th, 2017
  */
-
 package filesystem;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +19,7 @@ public class FileSystemManager {
     private Path filesystem;
     private Path originals;
     private Path backups;
+    private Path restored;
 
     public FileSystemManager(int id) {
         this.id = id;
@@ -27,18 +31,21 @@ public class FileSystemManager {
 
         Path filesystemPath = Paths.get(home, "DBS", "peer" + this.id);
         Path originalsPath = Paths.get(filesystemPath.toString(), "originals");
+        Path restoredPath = Paths.get(filesystemPath.toString(), "restored");
         Path backupsPath = Paths.get(filesystemPath.toString(), "backups");
 
         try {
             Files.createDirectories(originalsPath);
+            Files.createDirectories(restoredPath);
             Files.createDirectories(backupsPath);
-        } catch (IOException se) {
-            System.out.println(se.getMessage());
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
             return false;
         }
 
         this.filesystem = filesystemPath;
         this.originals = originalsPath;
+        this.restored = restoredPath;
         this.backups = backupsPath;
 
         return true;
@@ -56,6 +63,10 @@ public class FileSystemManager {
         return this.backups.toString();
     }
 
+    public String getPathToRestored() {
+        return this.restored.toString();
+    }
+
     public boolean createDir(String dirname) {
         Path newDir = Paths.get(this.backups.toString(), dirname);
 
@@ -71,17 +82,48 @@ public class FileSystemManager {
 
     public File getOriginalFile(String filename) {
         File file = new File(this.getPathToOriginals() + "/" + filename);
-
-        if (!file.exists()) {
-            file = null;
-        }
-
-        return file;
+        return (file.exists()) ? file : null;
     }
 
     public boolean deleteOriginalFile(String filename) {
         File file = this.getOriginalFile(filename);
         return file.exists() && file.delete();
+    }
+
+    public boolean saveRestoredFile(byte[] buffer, String filename) {
+        File newFile = new File(this.getPathToRestored()
+                + "/" + filename
+        );
+
+        try (FileOutputStream out = new FileOutputStream(newFile)) {
+            out.write(buffer, 0, buffer.length);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean saveChunk(Chunk chunk) {
+        this.createDir(chunk.getFileId());
+
+        File newFile = new File(this.getPathToBackups()
+                + "/"
+                + chunk.getFileId()
+                + "/"
+                + chunk.getNumber()
+                + ".chunk"
+        );
+
+        try (FileOutputStream out = new FileOutputStream(newFile)) {
+            out.write(chunk.getContent(), 0, chunk.getContent().length);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     public Chunk getChunk(String fileId, int chunkNumber) {
@@ -110,27 +152,6 @@ public class FileSystemManager {
         return chunk;
     }
 
-    public boolean saveChunk(Chunk chunk) {
-        this.createDir(chunk.getFileId());
-
-        File newFile = new File(this.getPathToBackups()
-                + "/"
-                + chunk.getFileId()
-                + "/"
-                + chunk.getNumber()
-                + ".chunk"
-        );
-
-        try (FileOutputStream out = new FileOutputStream(newFile)) {
-            out.write(chunk.getContent(), 0, chunk.getContent().length);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        return true;
-    }
-
     public boolean deleteChunk(String fileId, int chunkNumber) {
         File file = new File(this.getPathToBackups()
                 + "/"
@@ -142,4 +163,5 @@ public class FileSystemManager {
 
         return file.exists() && file.delete();
     }
+
 }
