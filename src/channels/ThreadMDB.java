@@ -24,7 +24,7 @@ public class ThreadMDB extends Thread{
 
 
             try {
-                byte[] buffer = new byte[256];
+                byte[] buffer = new byte[65536];
                 DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
                 peer.getBackupChannel().getMc_socket().receive(packet);
                 if(packet.getData() != null)

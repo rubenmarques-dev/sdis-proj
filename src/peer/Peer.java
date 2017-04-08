@@ -12,6 +12,7 @@ import messages.Delete;
 import messages.GetChunk;
 import messages.Removed;
 import metadata.Data;
+import metadata.Register;
 import rmi.RemoteInterface;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class Peer implements RemoteInterface{
     public  static FileSystemManager filesystem;
     public static BackupFileHandler fileHandler;
     public static Data data;
+    public static Register register;
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
@@ -44,6 +46,7 @@ public class Peer implements RemoteInterface{
         this.restoreThread = new ThreadMDR(this);
         this.deleteThread = new ThreadMDB(this);
         this.data = new Data();
+        this.register = new Register();
         initialize();
     }
 
@@ -65,7 +68,7 @@ public class Peer implements RemoteInterface{
     public String restore() throws RemoteException {
         GetChunk msg = new GetChunk("1.0",idPeer,"teste.txt", 13);
 
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
+        DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
         try {
             controlChannel.getMc_socket().send(packet);
         } catch (IOException e) {
@@ -85,7 +88,7 @@ public class Peer implements RemoteInterface{
     public String reclaim() throws RemoteException {
         Removed msg = new Removed("1.0",idPeer,"teste.txt", 13);
 
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(),msg.getHeader().getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
+        DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
         try {
             controlChannel.getMc_socket().send(packet);
         } catch (IOException e) {
@@ -98,6 +101,7 @@ public class Peer implements RemoteInterface{
     public String state() throws RemoteException {
 
         data.print();
+        register.print();
         return "state: "+idPeer;
     }
 

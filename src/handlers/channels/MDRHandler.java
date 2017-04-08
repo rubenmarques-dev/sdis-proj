@@ -20,15 +20,18 @@ public class MDRHandler extends Thread{
     @Override
     public void run() {
 
-        String received = new String(packet.getData(), 0, packet.getLength());
 
-        String fields[] = ParserHeader.parse(received);
+        ParserHeader parserHeader = new ParserHeader();
+        byte[] buffer = packet.getData();
+        parserHeader.parseBody(buffer,packet.getLength());
+        String[] fields = parserHeader.getFields();
 
+       // String fields[] = null;
         int senderID = Integer.parseInt(fields[2]);
         if(senderID == Peer.idPeer)
             return;
 
-        System.out.println("received: " + received);
+      //  System.out.println("received: " + received);
 
         String type = fields[0];
         if(type.equals("CHUNK"))

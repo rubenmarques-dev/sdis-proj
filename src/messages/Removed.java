@@ -3,15 +3,13 @@ package messages;
 /**
  * Created by ei10117 on 28/03/2017.
  */
-public class Removed extends GetChunk {
+public class Removed extends Header {
 
     public Removed(String version, int senderID, String fileId, int chunkNo) {
-        super(version, senderID, fileId, chunkNo);
+        super(version, senderID, fileId);
+        this.chunkNo = chunkNo;
         this.type = "REMOVED";
     }
 
-    @Override
-    public String getHeader() {
-        return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + CRLF + CRLF;
-    }
+
 }

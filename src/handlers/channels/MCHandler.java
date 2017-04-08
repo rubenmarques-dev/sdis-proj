@@ -3,6 +3,7 @@ package handlers.channels;
 import messages.ParserHeader;
 import peer.Peer;
 
+import javax.swing.text.html.parser.Parser;
 import java.net.DatagramPacket;
 
 /**
@@ -19,35 +20,35 @@ public class MCHandler extends Thread{
     @Override
     public void run() {
 
-        String received = new String(packet.getData(), 0, packet.getLength());
-
-        String fields[] = ParserHeader.parse(received);
+        ParserHeader parserHeader = new ParserHeader();
+        byte[] buffer = packet.getData();
+        parserHeader.parse(buffer);
+        String[] fields = parserHeader.getFields();
 
         int senderID = Integer.parseInt(fields[2]);
         if(senderID == Peer.idPeer)
             return ;
 
-        System.out.println("received(ch): " + received);
+      //  System.out.println("received(ch): " + received);
 
         String type = fields[0];
         if(type.equals("STORED"))
         {
-            System.out.println("type.equals(STORED)");
+         //   System.out.println("type.equals(STORED)");
             String version = fields[1];
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
 
             if(!Peer.data.fileExist(fileID))
-                System.out.println("ficheiro não foi criado/não sou owner do ficheiro");
+            {}
             else if(!Peer.data.chunkExists(fileID,chunkNum))
-                System.out.println("Ficheiro criado, mas não foi criado o chunk");
+            {}
             else
             {
                 Peer.data.getFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
             }
 
-
-
+            Peer.register.addRecord(type,chunkNum,senderID,fileID);
 
         }
         else if(type.equals("GETCHUNK"))

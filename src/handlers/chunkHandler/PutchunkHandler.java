@@ -29,10 +29,23 @@ public class PutchunkHandler extends Thread{
     @Override
     public void run() {
         System.out.println("PutchunkHandler: chunk" + chunkNum);
+
         int repDegree = Peer.data.getFile(filename).getReplicationDegree();
         PutChunk msg = new PutChunk("1.0", Peer.idPeer,filename, chunkNum, chunk.getContent(),repDegree);
         Peer.data.getFile(filename).getChunks().put(chunkNum,new Metadata());
-        DatagramPacket packet = new DatagramPacket(msg.getHeader().getBytes(), msg.getHeader().getBytes().length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
+
+        byte[] buf = msg.getBytes();
+
+        System.out.println(buf.length);
+        System.out.println(chunk.getContent().length);
+
+        byte[] c = new byte[buf.length + chunk.getContent().length];
+
+        System.arraycopy(buf, 0, c, 0, buf.length);
+        System.arraycopy(chunk.getContent(), 0, c, buf.length, chunk.getContent().length);
+        System.out.println("c: " + c.length);
+
+        DatagramPacket packet = new DatagramPacket(c, c.length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
 
         int storedReceived = 0;
         boolean repeat;
@@ -55,7 +68,7 @@ public class PutchunkHandler extends Thread{
 
             if(repDegree > storedReceived)
             {
-                System.out.println("rep degree: " + repDegree + " - storesReceived: "+ storedReceived);
+               // System.out.println("rep degree: " + repDegree + " - storesReceived: "+ storedReceived);
                 sleepTime = sleepTime * 2;
                 count++;
                 if(count == 5)
