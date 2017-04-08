@@ -1,5 +1,7 @@
 package messages;
 
+import java.util.Arrays;
+
 /**
  * Created by zabrn on 19/03/2016.
  */
@@ -19,6 +21,7 @@ public class PutChunk extends ChunkMsg {
     @Override
     public String getHeader() {
         // ws = " "
-        return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + replicationDeg + ws + CRLF + CRLF + body;
+        //return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + replicationDeg + ws + CRLF + CRLF + body;
+        return type + ws + version + ws + senderID + ws + fileID + ws + chunkNo + ws + replicationDeg + ws + CRLF + CRLF + new String(body);
     }
 }

@@ -5,9 +5,7 @@
 
 package filesystem;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -102,4 +100,29 @@ public class FileSystemManager {
         return true;
     }
 
+    public Chunk getChunk(String fileId, int chunkNumber) {
+        File file = new File(this.getPathToBackups()
+                + "/"
+                + fileId
+                + "/"
+                + chunkNumber
+                + ".chunk"
+        );
+
+        if (!file.exists()) {
+            return null;
+        }
+
+        byte[] buffer = new byte[(int)file.length()];
+        Chunk chunk = new Chunk(chunkNumber, fileId, buffer);
+
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+            bis.read(buffer);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+        return chunk;
+    }
 }

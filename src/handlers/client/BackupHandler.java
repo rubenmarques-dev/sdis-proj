@@ -25,7 +25,6 @@ public class BackupHandler extends Thread{
     public void run() {
 
         File file = Peer.filesystem.getOriginalFile(filename);
-
         Peer.data.addFile(replicationDegree,filename,0);
 
         System.out.println("after addFile");
@@ -38,11 +37,10 @@ public class BackupHandler extends Thread{
         BackupFile bkFile = new BackupFile(file);
         ArrayList<Chunk> chunks = Peer.fileHandler.split(bkFile);
         bkFile.setChunks(chunks);
-        System.out.println();
 
-        for(int i= 0; i< chunks.size(); i++)
+        for(int i= 0; i< chunks.size(); i++) {
             (new PutchunkHandler(chunks.get(i),i,filename)).run();
-
+        }
 
     }
 }

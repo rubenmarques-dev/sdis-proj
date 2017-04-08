@@ -8,6 +8,7 @@ import peer.Peer;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -41,7 +42,8 @@ public class MDBHandler extends Thread{
 
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
-            String body = fields[6];
+            String[] s = Arrays.copyOfRange(fields, 6, fields.length-1);
+            String body = Arrays.toString(s);
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
 

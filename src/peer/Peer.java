@@ -56,7 +56,6 @@ public class Peer implements RemoteInterface{
     @Override
     public String backup(String filename,int replicationDegree) throws RemoteException {
         //parse ficheiros
-
         (new BackupHandler(filename,replicationDegree)).run();
 
         return "success";
