@@ -164,4 +164,10 @@ public class FileSystemManager {
         return file.exists() && file.delete();
     }
 
+    public boolean deleteBackupFile(String fileID) {
+
+
+        return true;
+    }
+
 }

@@ -7,8 +7,10 @@ import java.util.Arrays;
  * Created by ei10117 on 08/04/2017.
  */
 public class ParserHeader {
+
     private byte[] body;
     private String[] fields;
+
     public ParserHeader() {
     }
 
@@ -19,23 +21,17 @@ public class ParserHeader {
         fields = header.split(" ");
     }
 
-    public void parseBody(byte[] buffer, int size){
-
+    public void parseBody(byte[] buffer, int size) {
         String received = new String(buffer, 0, buffer.length);
         StringBuffer str = new StringBuffer(received);
 
         int pos = str.indexOf("\n\r\n\r");
-
-
         body = Arrays.copyOfRange(buffer, pos + 4, size);
 
         String aux = new String(Arrays.copyOfRange(buffer,0, pos));
         fields = null;
         fields = aux.split(" ");
-
     }
-
-
 
     public byte[] getBody() {
         return body;

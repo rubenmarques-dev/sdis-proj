@@ -25,8 +25,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by ei10117 on 16/03/2017.
  */
-public class Peer implements RemoteInterface{
-
+public class Peer implements RemoteInterface {
 
     public static MulticastChannel controlChannel;
     public static MulticastChannel backupChannel;
@@ -58,9 +57,7 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String backup(String filename,int replicationDegree) throws RemoteException {
-        //parse ficheiros
         (new BackupHandler(filename,replicationDegree)).run();
-
         return "success";
     }
 
@@ -79,7 +76,6 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String delete(String filename) throws RemoteException {
-
         new DeleteHandler(filename).run();
         return "success";
     }
@@ -99,7 +95,6 @@ public class Peer implements RemoteInterface{
 
     @Override
     public String state() throws RemoteException {
-
         data.print();
         //register.print();
         return "state: "+idPeer;
