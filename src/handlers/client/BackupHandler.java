@@ -25,7 +25,6 @@ public class BackupHandler extends Thread {
     public void run() {
         File file = Peer.filesystem.getOriginalFile(filename);
 
-
         if (file == null) {
             System.out.println("File not found.");
             System.out.println("File must be in " + Peer.filesystem.getPathToOriginals());

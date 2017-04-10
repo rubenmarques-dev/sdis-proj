@@ -12,6 +12,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class BackupFile {
     
@@ -45,7 +46,6 @@ public class BackupFile {
         
         return String.format("%040x", new BigInteger(1, buffer));
     }
-
 
     private String getFileIdDigest(String tempFileId) {
         StringBuilder hexString = new StringBuilder();
@@ -91,5 +91,17 @@ public class BackupFile {
     public void setChunks(ArrayList<Chunk> chunks) {
         this.chunks = chunks;
     }
-    
+
+    public void sortChunks() {
+        Collections.sort(chunks,
+                (Chunk c1, Chunk c2) -> c1.getNumber() - c2.getNumber()
+        );
+    }
+
+    public void addChunk(Chunk chunk) {
+        if (!chunks.contains(chunk)) {
+            chunks.add(chunk);
+            System.out.println("chunk adicionado " + chunk.getNumber());
+        }
+    }
 }

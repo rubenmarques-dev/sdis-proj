@@ -57,8 +57,10 @@ public class TestApp {
                 repDegree = Integer.parseInt(args[3]);
                 protocolResponse = remoteInterface.backup(filePath, repDegree);
             }
-            else if(subProtocol.equals("RESTORE"))
-                protocolResponse = remoteInterface.restore();
+            else if(subProtocol.equals("RESTORE")) {
+                filePath = args[2];
+                protocolResponse = remoteInterface.restore(filePath);
+            }
             else if(subProtocol.equals("DELETE")) {
                 filePath = args[2];
                 protocolResponse = remoteInterface.delete(filePath);

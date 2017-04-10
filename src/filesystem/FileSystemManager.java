@@ -95,6 +95,12 @@ public class FileSystemManager {
                 + "/" + filename
         );
 
+        try {
+            newFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try (FileOutputStream out = new FileOutputStream(newFile)) {
             out.write(buffer, 0, buffer.length);
         } catch (Exception e) {

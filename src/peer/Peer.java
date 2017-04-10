@@ -4,10 +4,12 @@ import channels.ThreadMC;
 import channels.ThreadMDB;
 import channels.MulticastChannel;
 import channels.ThreadMDR;
+import filesystem.BackupFile;
 import filesystem.BackupFileHandler;
 import filesystem.FileSystemManager;
 import handlers.client.BackupHandler;
 import handlers.client.DeleteHandler;
+import handlers.client.RestoreHandler;
 import messages.Delete;
 import messages.GetChunk;
 import messages.Removed;
@@ -21,6 +23,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * Created by ei10117 on 16/03/2017.
@@ -38,6 +42,7 @@ public class Peer implements RemoteInterface {
     public static BackupFileHandler fileHandler;
     public static Data data;
     public static Register register;
+    public static HashMap<String, BackupFile> restoredFiles;
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
@@ -46,6 +51,7 @@ public class Peer implements RemoteInterface {
         this.deleteThread = new ThreadMDB(this);
         this.data = new Data();
         this.register = new Register();
+        this.restoredFiles = new HashMap<>();
         initialize();
     }
 
@@ -62,15 +68,8 @@ public class Peer implements RemoteInterface {
     }
 
     @Override
-    public String restore() throws RemoteException {
-        GetChunk msg = new GetChunk("1.0",idPeer,"teste.txt", 13);
-
-        DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.getBytes().length,controlChannel.getAdress(),controlChannel.getPort());
-        try {
-            controlChannel.getMc_socket().send(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String restore(String filename) throws RemoteException {
+        (new RestoreHandler(filename)).run();
         return "success";
     }
 

@@ -28,5 +28,17 @@ public class Chunk {
     public byte[] getContent() {
         return content;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Chunk chunk = (Chunk) o;
+
+        return fileId.equals(chunk.fileId) && number == chunk.number;
+    }
 }

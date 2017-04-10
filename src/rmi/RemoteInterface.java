@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
  public interface RemoteInterface extends Remote{
 
     String backup(String filename,int replicationDegree) throws RemoteException;
-    String restore() throws RemoteException;
+    String restore(String filename) throws RemoteException;
     String delete(String filename) throws RemoteException;
     String reclaim() throws RemoteException;
     String state() throws RemoteException;

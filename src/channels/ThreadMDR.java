@@ -25,7 +25,8 @@ public class ThreadMDR extends Thread{
             try {
                 byte[] buffer = new byte[65536];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-                peer.getBackupChannel().getMc_socket().receive(packet);
+                peer.getRestoreChannel().getMc_socket().receive(packet);
+
                 if (packet.getData() != null) {
                     (new MDRHandler(packet)).run();
                 } else {

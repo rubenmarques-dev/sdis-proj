@@ -1,5 +1,7 @@
 package handlers.channels;
 
+import filesystem.BackupFile;
+import filesystem.Chunk;
 import messages.ParserHeader;
 import peer.Peer;
 
@@ -9,7 +11,7 @@ import java.net.InetAddress;
 /**
  * Created by ei10117 on 28/03/2017.
  */
-public class MDRHandler extends Thread{
+public class MDRHandler extends Thread {
 
     private DatagramPacket packet;
 
@@ -19,30 +21,41 @@ public class MDRHandler extends Thread{
 
     @Override
     public void run() {
-
-
         ParserHeader parserHeader = new ParserHeader();
         byte[] buffer = packet.getData();
         parserHeader.parseBody(buffer,packet.getLength());
+
         String[] fields = parserHeader.getFields();
 
-       // String fields[] = null;
         int senderID = Integer.parseInt(fields[2]);
-        if(senderID == Peer.idPeer)
+        if (senderID == Peer.idPeer) {
             return;
-
-      //  System.out.println("received: " + received);
+        }
 
         String type = fields[0];
-        if(type.equals("CHUNK"))
+        if (type.equals("CHUNK"))
         {
-
             String version = fields[1];
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
-            String body = fields[6];
-            int port = packet.getPort();
-            InetAddress adress = packet.getAddress();
+
+            byte[] buf = parserHeader.getBody();
+            Chunk chunk = new Chunk(chunkNum, fileID,  buf);
+
+            BackupFile bkFile = Peer.restoredFiles.get(fileID);
+
+            if (bkFile != null) {
+                bkFile.addChunk(chunk);
+
+                int chunkQty = Peer.data.getBackupFile(fileID).getChunks().size();
+
+                if (chunkQty == bkFile.getChunks().size()) {
+                    System.out.println("DEVE FAZER MERGE");
+                    bkFile.sortChunks();
+                    byte[] fileContent = Peer.fileHandler.merge(bkFile.getChunks());
+                    Peer.filesystem.saveRestoredFile(fileContent, fileID);
+                }
+            }
 
         }
 

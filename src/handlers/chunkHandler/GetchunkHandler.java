@@ -26,7 +26,7 @@ public class GetchunkHandler extends Thread {
 
         GetChunk msg = new GetChunk("1.0", Peer.idPeer,filename,chunkNum);
 
-        DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
+        DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.controlChannel.getAdress(), Peer.controlChannel.getPort());
 
 
         try {
