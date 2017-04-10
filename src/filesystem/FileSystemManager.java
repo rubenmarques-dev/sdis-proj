@@ -165,7 +165,13 @@ public class FileSystemManager {
     }
 
     public boolean deleteBackupFile(String fileID) {
+        File dir = new File(this.getPathToBackups(), fileID);
 
+        for (File f : dir.listFiles()) {
+            f.delete();
+        }
+
+        dir.delete();
 
         return true;
     }
