@@ -20,18 +20,18 @@ public class Data{
         myStores = new HashMap<String, File>();
     }
 
-    public void addBackupFile(int repDegree, String fileID, int size)
+    public void addBackupFile(int repDegree, String fileID, String filepath, int size)
     {
-        myBackups.put(fileID,new File(repDegree,fileID,size));
+        myBackups.put(fileID,new File(repDegree,fileID,filepath,size));
     }
     public File getBackupFile(String fileId)
    {
        return myBackups.get(fileId);
    }
 
-    public void addStoredFile(int repDegree, String fileID, int size)
+    public void addStoredFile(int repDegree, String fileID,String filepath, int size)
     {
-        myStores.put(fileID,new File(repDegree,fileID,size));
+        myStores.put(fileID,new File(repDegree,fileID,filepath,size));
     }
     public File getStoredFile(String fileId)
     {
@@ -101,6 +101,11 @@ public class Data{
         }
     }
 
+
+    public String getFilepath(String fileSHA)
+    {
+        return myBackups.get(fileSHA).getFilepath();
+    }
 
 
 

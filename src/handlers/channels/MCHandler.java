@@ -7,6 +7,7 @@ import peer.Peer;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.util.Random;
 
 /**
  * Created by ei10117 on 28/03/2017.
@@ -49,7 +50,7 @@ public class MCHandler extends Thread {
                 Peer.data.getBackupFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
             }
 
-            Peer.register.addRecord(type,chunkNum,senderID,fileID);
+
         }
         else if(type.equals("GETCHUNK"))
         {
@@ -69,8 +70,26 @@ public class MCHandler extends Thread {
                 System.arraycopy(chunk.getContent(), 0, c, buf.length, chunk.getContent().length);
 
                 try {
+
                     DatagramPacket packet = new DatagramPacket(c, c.length,Peer.restoreChannel.getAdress(),Peer.restoreChannel.getPort());
-                    Peer.restoreChannel.getMc_socket().send(packet);
+
+                    int sleepTime = (new Random()).nextInt(400);
+                    try {
+                        System.out.println("Sleeping: " + sleepTime);
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(!Peer.register.hasIt(fileID,chunkNum)) {
+                        Peer.restoreChannel.getMc_socket().send(packet);
+                        Peer.register.add(fileID,chunkNum);
+                    }
+                    else
+                    {
+                        if(Peer.data.getMyStores().get(fileID).getChunks().get(chunkNum).getSize() == chunk.getContent().length)
+                            Peer.register.clean(fileID);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

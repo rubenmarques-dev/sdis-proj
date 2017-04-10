@@ -10,13 +10,15 @@ import java.util.Set;
 public class File {
 
     private int replicationDegree;
+    private String filepath;
     private String fileID;
     private HashMap<Integer, Metadata>  chunks;
     private int size;
 
-    public File(int replicationDegree,String fileID, int size) {
+    public File(int replicationDegree,String fileID,String filepath, int size) {
         this.replicationDegree = replicationDegree;
         this.fileID = fileID;
+        this.filepath = filepath;
         this.size = size;
         chunks = new HashMap<Integer,Metadata>();
     }
@@ -57,6 +59,10 @@ public class File {
         this.replicationDegree = replicationDegree;
     }
 
+    public String getFilepath() {return filepath;}
+
+    public void setFilepath(String filepath) {this.filepath = filepath;}
+
     public  void printBackup()
     {
         Set set = chunks.entrySet();
@@ -78,6 +84,8 @@ public class File {
             ((Metadata)mentry.getValue()).printStored();
         }
     }
+
+
 
 
 

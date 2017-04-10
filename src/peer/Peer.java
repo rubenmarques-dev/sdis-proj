@@ -17,6 +17,7 @@ import metadata.Data;
 import metadata.Register;
 import rmi.RemoteInterface;
 
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.rmi.AlreadyBoundException;
@@ -30,7 +31,7 @@ import java.util.Vector;
 /**
  * Created by ei10117 on 16/03/2017.
  */
-public class Peer implements RemoteInterface {
+public class Peer implements rmi.RemoteInterface {
 
     public static MulticastChannel controlChannel;
     public static MulticastChannel backupChannel;
@@ -44,6 +45,7 @@ public class Peer implements RemoteInterface {
     public static Data data;
     public static Register register;
     public static HashMap<String, BackupFile> restoredFiles;
+
 
     public Peer(int idPeer) {
         this.idPeer = idPeer;
@@ -71,6 +73,7 @@ public class Peer implements RemoteInterface {
     @Override
     public String restore(String filename) throws RemoteException {
         (new RestoreHandler(filename)).run();
+        //restoredFiles.get(filename).getChunks().clear();
         return "success";
     }
 
@@ -98,6 +101,11 @@ public class Peer implements RemoteInterface {
         data.print();
         //register.print();
         return "state: "+idPeer;
+    }
+
+    public static void endRestore(String file)
+    {
+        restoredFiles.remove(file);
     }
 
 
