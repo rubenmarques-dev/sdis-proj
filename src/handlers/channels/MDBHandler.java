@@ -3,6 +3,8 @@ package handlers.channels;
 import filesystem.Chunk;
 import messages.ParserHeader;
 import messages.Stored;
+import metadata.Metadata;
+import org.omg.CORBA.PERSIST_STORE;
 import peer.Peer;
 
 import java.io.FileNotFoundException;
@@ -49,12 +51,10 @@ public class MDBHandler extends Thread{
             String version = fields[1];
 
             String fileID = fields[3];
+            int repDegree = Integer.parseInt(fields[4]);
             int chunkNum = Integer.parseInt(fields[4]);
 
-
             byte[] buf = parserHeader.getBody();
-            System.out.println("buffer_size: " + buf.length);
-
             int port = packet.getPort();
             InetAddress adress = packet.getAddress();
 
@@ -62,6 +62,10 @@ public class MDBHandler extends Thread{
 
             //savechunk
             Peer.filesystem.saveChunk(chunk);
+            if(!Peer.data.storesExists(fileID))
+                Peer.data.addStoredFile(repDegree,fileID,0);
+            if(!Peer.data.chunkExistsStored(fileID,chunkNum))
+                    Peer.data.getStoredFile(fileID).getChunks().put(chunkNum,new Metadata(buf.length));
 
             System.out.println("before send stored");
             int sleepTime = (new Random()).nextInt(400);

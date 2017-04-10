@@ -101,9 +101,13 @@ public class Peer implements RemoteInterface{
     public String state() throws RemoteException {
 
         data.print();
-        register.print();
+        //register.print();
         return "state: "+idPeer;
     }
+
+
+
+
 
     //get-set controlChannel
     public MulticastChannel getControlChannel() {
@@ -132,6 +136,8 @@ public class Peer implements RemoteInterface{
         this.restoreThread.start();
 
     }
+
+
     public static void main(String[] args) throws IOException {
 
         String version = null;

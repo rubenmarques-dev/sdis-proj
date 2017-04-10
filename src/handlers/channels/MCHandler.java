@@ -3,7 +3,6 @@ package handlers.channels;
 import messages.ParserHeader;
 import peer.Peer;
 
-import javax.swing.text.html.parser.Parser;
 import java.net.DatagramPacket;
 
 /**
@@ -39,13 +38,13 @@ public class MCHandler extends Thread{
             String fileID = fields[3];
             int chunkNum = Integer.parseInt(fields[4]);
 
-            if(!Peer.data.fileExist(fileID))
+            if(!Peer.data.backupExists(fileID))
             {}
-            else if(!Peer.data.chunkExists(fileID,chunkNum))
+            else if(!Peer.data.chunkExistsBackup(fileID,chunkNum))
             {}
             else
             {
-                Peer.data.getFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
+                Peer.data.getBackupFile(fileID).getChunks().get(chunkNum).addSaver(senderID);
             }
 
             Peer.register.addRecord(type,chunkNum,senderID,fileID);
@@ -58,6 +57,7 @@ public class MCHandler extends Thread{
         else if(type.equals("DELETE"))
         {
             //TODO apaga da DBS dando um fileID
+
         }
         else if(type.equals("REMOVED"))
         {

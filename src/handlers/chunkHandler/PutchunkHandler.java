@@ -30,20 +30,17 @@ public class PutchunkHandler extends Thread{
     public void run() {
         System.out.println("PutchunkHandler: chunk" + chunkNum);
 
-        int repDegree = Peer.data.getFile(filename).getReplicationDegree();
+        int repDegree = Peer.data.getBackupFile(filename).getReplicationDegree();
         PutChunk msg = new PutChunk("1.0", Peer.idPeer,filename, chunkNum, chunk.getContent(),repDegree);
-        Peer.data.getFile(filename).getChunks().put(chunkNum,new Metadata());
+        Peer.data.getBackupFile(filename).getChunks().put(chunkNum,new Metadata());
+        Peer.data.getBackupFile(filename).getChunks().get(chunkNum).setSize(chunk.getContent().length);
 
         byte[] buf = msg.getBytes();
-
-        System.out.println(buf.length);
-        System.out.println(chunk.getContent().length);
-
         byte[] c = new byte[buf.length + chunk.getContent().length];
 
         System.arraycopy(buf, 0, c, 0, buf.length);
         System.arraycopy(chunk.getContent(), 0, c, buf.length, chunk.getContent().length);
-        System.out.println("c: " + c.length);
+
 
         DatagramPacket packet = new DatagramPacket(c, c.length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
 
@@ -64,7 +61,7 @@ public class PutchunkHandler extends Thread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            storedReceived = Peer.data.getFile(filename).getChunks().get(chunkNum).getSavers().size();
+            storedReceived = Peer.data.getBackupFile(filename).getChunks().get(chunkNum).getSavers().size();
 
             if(repDegree > storedReceived)
             {

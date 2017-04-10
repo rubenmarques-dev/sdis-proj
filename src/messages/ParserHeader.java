@@ -30,7 +30,6 @@ public class ParserHeader {
         body = Arrays.copyOfRange(buffer, pos + 4, size);
 
         String aux = new String(Arrays.copyOfRange(buffer,0, pos));
-        System.out.println(aux);
         fields = null;
         fields = aux.split(" ");
 

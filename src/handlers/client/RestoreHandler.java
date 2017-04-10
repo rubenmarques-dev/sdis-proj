@@ -16,7 +16,7 @@ public class RestoreHandler extends Thread{
     @Override
     public void run() {
 
-        int totalChunks = Peer.data.getFile(filename).getChunks().size();
+        int totalChunks = Peer.data.getBackupFile(filename).getChunks().size();
 
         for (int i = 0; i < totalChunks; i++) {
             (new GetchunkHandler(i,filename)).run();

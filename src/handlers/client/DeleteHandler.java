@@ -22,7 +22,7 @@ public class DeleteHandler extends  Thread {
         Delete msg = new Delete("1.0", Peer.idPeer, filename);
         DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.backupChannel.getAdress(), Peer.backupChannel.getPort());
 
-        int trys = Peer.data.getFile(filename).getChunks().size();
+        int trys = Peer.data.getBackupFile(filename).getChunks().size();
 
         for (int i = 0; i < trys ;i++){
 
@@ -35,6 +35,6 @@ public class DeleteHandler extends  Thread {
 
         }
 
-        Peer.data.removeFile(filename);
+        Peer.data.removeBackup(filename);
     }
 }
