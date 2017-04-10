@@ -23,7 +23,6 @@ public class PutchunkHandler extends Thread{
         this.chunkNum = chunkNum;
         this.filename = filename;
         this.sleepTime = 1000;
-
     }
 
     @Override

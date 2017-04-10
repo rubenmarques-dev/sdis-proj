@@ -1,6 +1,5 @@
 package handlers.channels;
 
-import com.sun.xml.internal.ws.api.message.Packet;
 import filesystem.Chunk;
 import messages.ChunkMsg;
 import messages.ParserHeader;

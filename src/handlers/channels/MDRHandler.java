@@ -6,8 +6,6 @@ import messages.ParserHeader;
 import peer.Peer;
 
 import java.net.DatagramPacket;
-import java.net.InetAddress;
-
 /**
  * Created by ei10117 on 28/03/2017.
  */

@@ -16,7 +16,7 @@ public class ParserHeader {
 
     public void parse(byte[] buffer){
         String header = new String(buffer, 0, buffer.length);
-        header = header.replaceAll("[\n|\r]", "");
+        header = header.replaceAll("[\r|\n]", "");
         fields = null;
         fields = header.split(" ");
     }
@@ -25,7 +25,7 @@ public class ParserHeader {
         String received = new String(buffer, 0, buffer.length);
         StringBuffer str = new StringBuffer(received);
 
-        int pos = str.indexOf("\n\r\n\r");
+        int pos = str.indexOf("\r\n\r\n");
         body = Arrays.copyOfRange(buffer, pos + 4, size);
 
         String aux = new String(Arrays.copyOfRange(buffer,0, pos));

@@ -3,7 +3,7 @@ package messages;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Created by zabrn on 18/03/2016.
+ * Created by zabrn on 18/03/2017.
  ** <MessageType>
  This is the type of the message.
 <Version>
@@ -27,7 +27,7 @@ public abstract class Header {
     protected int chunkNo;
     protected int replicationDeg;
     protected String fileID;
-    protected String CRLF = "\n\r";
+    protected String CRLF = "\r\n";
     protected String ws = " ";
     protected byte[] body;
 

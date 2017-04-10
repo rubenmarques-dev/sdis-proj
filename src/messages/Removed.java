@@ -11,5 +11,4 @@ public class Removed extends Header {
         this.type = "REMOVED";
     }
 
-
 }

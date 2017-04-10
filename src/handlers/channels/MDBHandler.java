@@ -4,15 +4,11 @@ import filesystem.Chunk;
 import messages.ParserHeader;
 import messages.Stored;
 import metadata.Metadata;
-import org.omg.CORBA.PERSIST_STORE;
 import peer.Peer;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
-import java.util.Arrays;
 import java.util.Random;
 
 /**

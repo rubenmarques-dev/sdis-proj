@@ -1,6 +1,5 @@
 package handlers.chunkHandler;
 
-import messages.ChunkMsg;
 import messages.GetChunk;
 import peer.Peer;
 
@@ -25,9 +24,7 @@ public class GetchunkHandler extends Thread {
         System.out.println("GetchunkHandler: chunk" + chunkNum);
 
         GetChunk msg = new GetChunk("1.0", Peer.idPeer,filename,chunkNum);
-
         DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.controlChannel.getAdress(), Peer.controlChannel.getPort());
-
 
         try {
             Peer.controlChannel.sendMessage(packet);

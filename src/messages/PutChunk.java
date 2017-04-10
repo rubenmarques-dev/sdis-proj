@@ -1,14 +1,9 @@
 package messages;
 
-import java.util.Arrays;
-
 /**
- * Created by zabrn on 19/03/2016.
+ * Created by zabrn on 19/03/2017.
  */
 public class PutChunk extends Header {
-
-
-
 
     public PutChunk(String version, int senderID, String fileId, int chunkNo, byte[] body, int replicationDeg) {
         super(version, senderID, fileId);
@@ -16,9 +11,6 @@ public class PutChunk extends Header {
         this.chunkNo = chunkNo;
         this.replicationDeg = replicationDeg;
         this.body = body;
-
-
     }
-
 
 }
