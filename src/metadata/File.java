@@ -57,14 +57,25 @@ public class File {
         this.replicationDegree = replicationDegree;
     }
 
-    public  void print()
+    public  void printBackup()
     {
         Set set = chunks.entrySet();
         Iterator iterator = set.iterator();
         while (iterator.hasNext()){
             HashMap.Entry mentry = (HashMap.Entry)iterator.next();
             System.out.println(mentry.getKey());
-            ((Metadata)mentry.getValue()).print();
+            ((Metadata)mentry.getValue()).printBackups();
+        }
+    }
+
+    public  void printStored()
+    {
+        Set set = chunks.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            HashMap.Entry mentry = (HashMap.Entry)iterator.next();
+            System.out.println(mentry.getKey());
+            ((Metadata)mentry.getValue()).printStored();
         }
     }
 

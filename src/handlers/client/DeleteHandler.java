@@ -28,13 +28,14 @@ public class DeleteHandler extends  Thread {
             System.out.println("File must be in " + Peer.filesystem.getPathToOriginals());
             return;
         }
-
+        
         BackupFile bkFile = new BackupFile(file);
+
 
         Delete msg = new Delete("1.0", Peer.idPeer, bkFile.getFileId());
         DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, Peer.controlChannel.getAdress(), Peer.controlChannel.getPort());
 
-        int trys = Peer.data.getFile(bkFile.getFileId()).getReplicationDegree();
+        int trys = Peer.data.getBackupFile(bkFile.getFileId()).getReplicationDegree();
         //int trys = 5;
 
         try {
@@ -45,7 +46,9 @@ public class DeleteHandler extends  Thread {
             e.printStackTrace();
         }
 
-        Peer.data.removeFile(filename);
+
+        Peer.data.removeBackup(filename);
         Peer.filesystem.deleteOriginalFile(filename);
+
     }
 }

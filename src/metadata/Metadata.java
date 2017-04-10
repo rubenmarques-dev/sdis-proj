@@ -15,6 +15,12 @@ public class Metadata {
 
     }
 
+    public Metadata(int size) {
+        this.size = size;
+        savers = new ArrayList<Integer>();
+
+    }
+
     public ArrayList<Integer> getSavers() {
         return savers;
     }
@@ -39,7 +45,7 @@ public class Metadata {
         this.size = size;
     }
 
-    public void print()
+    public void printBackups()
     {
         System.out.print("savers: ");
         for(int i=0; i < savers.size(); i++)
@@ -49,6 +55,11 @@ public class Metadata {
                 System.out.print(", ");
         }
         System.out.println();
+        System.out.println("Size: " + size );
+    }
+
+    public void printStored()
+    {
         System.out.println("Size: " + size );
     }
 }

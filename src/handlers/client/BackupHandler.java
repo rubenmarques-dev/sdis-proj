@@ -25,6 +25,7 @@ public class BackupHandler extends Thread {
     public void run() {
         File file = Peer.filesystem.getOriginalFile(filename);
 
+
         if (file == null) {
             System.out.println("File not found.");
             System.out.println("File must be in " + Peer.filesystem.getPathToOriginals());
@@ -33,7 +34,9 @@ public class BackupHandler extends Thread {
 
         BackupFile bkFile = new BackupFile(file);
 
-        Peer.data.addFile(replicationDegree, bkFile.getFileId(),0);
+
+        Peer.data.addBackupFile(replicationDegree,bkFile.getFileId(),0);
+
         ArrayList<Chunk> chunks = Peer.fileHandler.split(bkFile);
         bkFile.setChunks(chunks);
 

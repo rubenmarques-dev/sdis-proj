@@ -1,5 +1,6 @@
 package metadata;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -7,55 +8,101 @@ import java.util.Set;
 /**
  * Created by ei10117 on 29/03/2017.
  */
-public class Data {
+public class Data{
 
 
-    private HashMap<String, File> files;
+    private HashMap<String, File> myBackups;
+    private HashMap<String, File> myStores;
 
     public Data() {
 
-        files = new HashMap<String, File>();
+        myBackups = new HashMap<String, File>();
+        myStores = new HashMap<String, File>();
     }
 
-    public void addFile(int repDegree,String fileID,int size)
+    public void addBackupFile(int repDegree, String fileID, int size)
     {
-        files.put(fileID,new File(repDegree,fileID,size));
+        myBackups.put(fileID,new File(repDegree,fileID,size));
     }
-    public File getFile(String fileId)
+    public File getBackupFile(String fileId)
    {
-       return files.get(fileId);
+       return myBackups.get(fileId);
    }
 
-    public void removeFile(String fileID){
-        files.remove(fileID);
-    }
-    public HashMap<String, File> getFiles() {
-        return files;
-    }
-
-    public void setFiles(HashMap<String, File> files) {
-        this.files = files;
-    }
-
-    public boolean fileExist(String fileID)
+    public void addStoredFile(int repDegree, String fileID, int size)
     {
-        return files.containsKey(fileID);
+        myStores.put(fileID,new File(repDegree,fileID,size));
+    }
+    public File getStoredFile(String fileId)
+    {
+        return myStores.get(fileId);
     }
 
-    public boolean chunkExists(String fileID, int chunkNum){
-        return files.get(fileID).getChunks().containsKey(chunkNum);
+
+    public void removeBackup(String fileID){
+        myBackups.remove(fileID);
+    }
+    public void removeStored(String fileID){
+        myStores.remove(fileID);
+    }
+
+    public HashMap<String, File> getMyBackups() {
+        return myBackups;
+    }
+
+    public void setMyBackups(HashMap<String, File> myBackups) {
+        this.myBackups = myBackups;
+    }
+
+    public HashMap<String, File> getMyStores() {
+        return myStores;
+    }
+
+    public void setMyStores(HashMap<String, File> myStores) {
+        this.myStores = myStores;
+    }
+
+    public boolean backupExists(String fileID)
+    {
+        return myBackups.containsKey(fileID);
+    }
+
+    public boolean storesExists(String fileID)
+    {
+        return myStores.containsKey(fileID);
+    }
+
+    public boolean chunkExistsBackup(String fileID, int chunkNum){
+        return myBackups.get(fileID).getChunks().containsKey(chunkNum);
+    }
+
+    public boolean chunkExistsStored(String fileID, int chunkNum){
+        return myStores.get(fileID).getChunks().containsKey(chunkNum);
     }
 
     public void print()
     {
-        System.out.println("-Printing Info");
-        Set set = files.entrySet();
+        System.out.println("-Backups");
+        Set set = myBackups.entrySet();
         Iterator iterator = set.iterator();
         while (iterator.hasNext()){
             HashMap.Entry mentry = (HashMap.Entry)iterator.next();
             System.out.println(mentry.getKey());
-            ((File)mentry.getValue()).print();
+            ((File)mentry.getValue()).printBackup();
+        }
+
+        System.out.println("-Stores");
+        set = myStores.entrySet();
+        iterator = set.iterator();
+        while (iterator.hasNext()){
+            HashMap.Entry mentry = (HashMap.Entry)iterator.next();
+            System.out.println(mentry.getKey());
+            ((File)mentry.getValue()).printStored();
         }
     }
+
+
+
+
 
 }
