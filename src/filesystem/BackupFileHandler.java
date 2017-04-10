@@ -21,7 +21,7 @@ public class BackupFileHandler {
         }
 
         // temp messages
-        System.out.println("File has " + bkFile.getFile().length() + "KB.");
+        System.out.println("File has " + (float) bkFile.getFile().length()/1000 + "KB.");
         System.out.println("Should be splitted in " + chunkQty + " chunk(s).");
 
         ArrayList<Chunk> chunks = new ArrayList<>();
