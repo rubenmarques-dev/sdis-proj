@@ -18,7 +18,7 @@ public class TestApp {
 
    protected static String opnd_2 = "This operand is an integer that specifies the desired replication degree " +
             "and applies only to the backup protocol (or its enhancement)";
-    protected static int peer_ap;
+    protected static String peer_ap;
     protected static String subProtocol;
     protected static int repDegree;
     protected static String filePath;
@@ -39,10 +39,10 @@ public class TestApp {
         {
             //peer_ap
             try {
-                peer_ap =Integer.parseInt(args[0]);
+                peer_ap = args[0];
                 System.out.println("<peer_ap>: " + peer_ap);
-                Registry registry = LocateRegistry.getRegistry(peer_ap);
-                remoteInterface = (RemoteInterface) registry.lookup("hello");
+                Registry registry = LocateRegistry.getRegistry(1555);
+                remoteInterface = (RemoteInterface) registry.lookup(peer_ap);
             } catch (Exception e) {
                 System.err.println("Client exception: " + e.toString());
                 e.printStackTrace();

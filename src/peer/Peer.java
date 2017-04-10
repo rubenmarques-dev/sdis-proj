@@ -19,6 +19,7 @@ import rmi.RemoteInterface;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -149,6 +150,7 @@ public class Peer implements RemoteInterface {
             version = args[0];
             idPeer = Integer.parseInt(args[1]);
             remote = args[2];
+            System.out.println(remote);
             //System.out.println("version: " + version + "\nid: "+ idPeer + "\nremote: " + remote);
 
             //creating peer
@@ -176,17 +178,25 @@ public class Peer implements RemoteInterface {
 
         }
 
-
+        RemoteInterface remoteInterface = (RemoteInterface ) UnicastRemoteObject.exportObject(peer, 0);
         try {
-            RemoteInterface remoteInterface = (RemoteInterface ) UnicastRemoteObject.exportObject(peer, 0);
+
             // Bind the remote object's stub in the registry
-            Registry registry = LocateRegistry.createRegistry(idPeer);
-            //Registry registry = LocateRegistry.getRegistry(peerId); //deprecated
-            registry.rebind(remote, remoteInterface);
+            Registry registry = LocateRegistry.createRegistry(1555);
+            registry.bind(remote, remoteInterface);
             System.out.println("Peer remotely ready");
-        } catch (Exception e) {
-            System.err.println("Server exception: " + e.toString());
-            e.printStackTrace();
+        }
+        catch (Exception e) {
+            Registry registry = LocateRegistry.getRegistry(1555);
+            try {
+                registry.bind(remote, remoteInterface);
+            } catch (AlreadyBoundException e1) {
+                e1.printStackTrace();
+                System.err.println("Server exception: " + e.toString());
+                e.printStackTrace();
+            }
+
+
         }
 
 
