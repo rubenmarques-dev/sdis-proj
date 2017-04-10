@@ -12,59 +12,40 @@ import java.util.Vector;
  */
 public class Register {
 
-    private HashMap<String, Vector<Record>> received;
+    private HashMap<String, Vector<Integer>> received;
 
     public Register() {
-        this.received = new HashMap<String, Vector<Record>>();
-        this.config();
+        this.received = new HashMap<>();
+
     }
+   public void add(String file,int chunkNum)
+   {
+       createRegistry(file);
+       received.get(file).add(chunkNum);
+   }
 
-    public void config(){
+   public void createRegistry(String file)
+   {
+       if(!received.containsKey(file))
+           received.put(file,new Vector<>());
+   }
 
-        this.received.put("PUTCHUNK", new Vector<Record>());
-        this.received.put("STORED", new Vector<Record>());
-        this.received.put("GETCHUNK",new Vector<Record>());
-        this.received.put("CHUNK",new Vector<Record>());
-        this.received.put("REMOVED",new Vector<Record>());
-        this.received.put("REMOVE",new Vector<Record>());
+   public Boolean hasIt(String file,int chunkNum)
+   {
+
+       if(received.containsKey(file))
+       {
+           if(received.get(file).contains(chunkNum))
+           {
+               return true;
+           }
+       }
+       return false;
+   }
+
+
+    public void clean(String fileID) {
+        received.remove(fileID);
+
     }
-
-
-
-    public void addRecord(String type,int chunkNum,int sender,String filename){
-        this.received.get(type).add(new Record(sender,chunkNum,filename));
-    }
-
-    public boolean hasCopy(String type,int chunkNum,int sender,String filename) {
-        Vector<Record> records = this.received.get(type);
-
-        for(int i = 0; i < records.size() ; i++){
-            if(records.get(i).isTheSame(sender,chunkNum,filename))
-                return true;
-        }
-
-        return false;
-    }
-    public void print()
-    {
-        System.out.println("-Printing Record");
-        Set set = received.entrySet();
-        Iterator iterator = set.iterator();
-        while (iterator.hasNext()){
-            HashMap.Entry mentry = (HashMap.Entry)iterator.next();
-            System.out.println(mentry.getKey());
-            printType((Vector<Record>) mentry.getValue());
-        }
-    }
-
-    public void printType(Vector<Record> records)
-    {
-        for (int i = 0; i < records.size(); i++) {
-            records.get(i).print();
-        }
-    }
-
-
-
-
 }

@@ -15,6 +15,7 @@ public class MDRHandler extends Thread {
 
     public MDRHandler(DatagramPacket packet) {
         this.packet = packet;
+
     }
 
     @Override
@@ -33,10 +34,15 @@ public class MDRHandler extends Thread {
         String type = fields[0];
         if (type.equals("CHUNK"))
         {
+            System.out.println("received chunk");
             String version = fields[1];
             String fileID = fields[3];
+
+
+
             int chunkNum = Integer.parseInt(fields[4]);
 
+            Peer.register.add(fileID,chunkNum);
             byte[] buf = parserHeader.getBody();
             Chunk chunk = new Chunk(chunkNum, fileID,  buf);
 
@@ -51,9 +57,14 @@ public class MDRHandler extends Thread {
                     System.out.println("DEVE FAZER MERGE");
                     bkFile.sortChunks();
                     byte[] fileContent = Peer.fileHandler.merge(bkFile.getChunks());
-                    Peer.filesystem.saveRestoredFile(fileContent, fileID);
+                    Peer.filesystem.saveRestoredFile(fileContent, Peer.data.getFilepath(bkFile.getFileId()));
+                    Peer.endRestore(bkFile.getFileId());
                 }
             }
+
+         /*   int num = Peer.data.getMyStores().get(fileID).getSize();
+            if(chunkNum == Peer.data.getMyStores().g)*/
+
 
         }
 

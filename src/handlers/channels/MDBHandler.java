@@ -59,7 +59,7 @@ public class MDBHandler extends Thread{
             //savechunk
             Peer.filesystem.saveChunk(chunk);
             if(!Peer.data.storesExists(fileID))
-                Peer.data.addStoredFile(repDegree,fileID,0);
+                Peer.data.addStoredFile(repDegree,fileID,null,0);
             if(!Peer.data.chunkExistsStored(fileID,chunkNum))
                     Peer.data.getStoredFile(fileID).getChunks().put(chunkNum,new Metadata(buf.length));
 

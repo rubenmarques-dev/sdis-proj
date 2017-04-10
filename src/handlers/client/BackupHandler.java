@@ -34,7 +34,7 @@ public class BackupHandler extends Thread {
         BackupFile bkFile = new BackupFile(file);
 
 
-        Peer.data.addBackupFile(replicationDegree,bkFile.getFileId(),0);
+        Peer.data.addBackupFile(replicationDegree,bkFile.getFileId(),filename,0);
 
         ArrayList<Chunk> chunks = Peer.fileHandler.split(bkFile);
         bkFile.setChunks(chunks);
